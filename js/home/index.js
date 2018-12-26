@@ -230,7 +230,7 @@ function ask(){
                                     sStorage = window.localStorage; //本地存题目
                                     sStorage.uri_goods = uri;//id
                                     sStorage.smallBanks = pastNumber;//已完成人数
-                                    location.href = '../mine/task_details.html';
+                                    location.href = 'task_details.html';
                                 })
                             }
                         })
@@ -284,7 +284,7 @@ function ask(){
                 sStorage = window.localStorage; //本地存题目
                 sStorage.uri_goods = uri;//id
                 sStorage.smallBanks = pastNumber;//已完成人数
-                location.href = '../mine/task_details.html';
+                location.href = 'task_details.html';
             })
 
         }
@@ -531,7 +531,7 @@ function countdown (totalSecond,index){
                             sStorage = window.localStorage; //本地存题目
                             sStorage.uri_goods = uri;//id
                             sStorage.smallBanks = pastNumber;//已完成人数
-                            location.href = '../mine/task_details.html';
+                            location.href = 'task_details.html';
                         })
                     }
                 })
