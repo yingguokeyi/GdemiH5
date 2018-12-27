@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="../../assets/css/common.css" />
+		<link rel="stylesheet" href="../../assets/css/header_common.css" />
+		<link rel="stylesheet" href="../../css/mine/yhk_withdraw.css" />
+		<link rel="stylesheet" href="../../assets/layer_mobile/need/layer.css" />
+		<script type="text/javascript" src="../../assets/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="../../assets/layer_mobile/layer.js"></script>
+		<script type="text/javascript" src="../../assets/js/font-size.js"></script>
+		<script type="text/javascript" src="../../assets/js/global_variable.js"></script>
+		<title>提现</title>
+	</head>
+	<body style="background:#fff;">
+		<div class="main">
+			<div class="main_top">
+				<header>
+					<div class="title_top">
+						<a href="withdraw.html" class="title_top_first">
+							<img src="../../image/mine/return.png" class="hea_img" />
+						</a>
+						<span class="title_top_center">银行卡提现</span>
+						<span style="float:right;margin-right:.26rem;font-size:.28rem;color:#666" onclick="window.location='history_withdraw.html'">明细</span>
+					</div>
+				</header>
+				<p class="wx_y">
+					<span class="y_txt">当前余额:<span></span></span>
+				</p>
+			</div>
+			<div class="wifg"></div>
+			<div class="main_bot">
+				<p class="wx_name">
+					<span class="card_name">未选择银行卡</span>
+					<span class="card_choose" onclick="window.location='bind_bankCard.html'"><img src="../../image/mine/enter.png" /></span>
+				</p>
+				<div class="wx_sum">
+					<p>
+						<input type="text" placeholder="请输入您的提现金额" value="" id="sumVal" />
+					</p>
+					<button type="button" id="wid_btn">提现</button>
+				</div>
+				<p class="wit_condition">*满五元可以提现,且可提现金额必须为5的倍数</p>
+				<p class="wit_service">
+					<img src="../../image/mine/service1.png" />
+					<a href="customer_service.html">联系客服</a>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../js/mine/yhk_withdraw.js"></script>
+</html>	
