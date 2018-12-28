@@ -1,0 +1,35 @@
+.main{
+	width: 100%;
+	border-top: .01rem solid #F9F9F9;
+}
+.main_cont{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.main_cont img{
+	width: 1.12rem;
+	height: 1.07rem;
+	margin-top: 1.18rem;
+}
+.title{
+	color: #333;
+	font-size: .3rem;
+	margin-top: .68rem;
+}
+.step_p{
+	color: #999;
+	font-size: .24rem;
+	margin-top: .18rem;
+}
+#step_btn{
+	width: 1.9rem;
+	height: .62rem;
+	text-align: center;
+	line-height: .62rem;
+	background: #333;
+	color: #fff;
+	font-size: .26rem;
+	border-radius: .06rem;
+	margin-top: .74rem;
+}

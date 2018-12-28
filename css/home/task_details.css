@@ -76,6 +76,14 @@
 .infor_bot p:nth-child(2){
 	float: right;
 }
+.task_num{
+	width: 100%;
+	padding: 0 .4rem;
+	margin-top: .15rem;
+	text-align: right;
+	color: #999;
+	font-size: .26rem;
+}
 .main_middle{
 	width: 100%;
 	margin-top: .8rem;
@@ -102,6 +110,9 @@
 .sample_picture #picOne{
 	overflow: hidden;
 }
+.sample_picture #picSub{
+	overflow: hidden;
+}
 .sample_picture img{
 	width: 30.5%;
 	height: 2.66rem;
@@ -109,21 +120,11 @@
 	margin-left: .15rem;
 	margin-bottom: .2rem;
 }
-.task_steps{
-	width: 100%;
-	margin-top: .8rem;
-}
-.task_steps li{
-	margin-bottom: .32rem;
-}
-.task_steps li p:nth-child(1){
-	font-size: .24rem;
+#sub_message{
+	padding: 0 .26rem;
 	color: #333;
-}
-.task_steps li p:nth-child(2){
-	font-size: .24rem;
-	color: #666;
-	margin-top: .18rem;
+	font-size: .26rem;
+	margin-bottom: .2rem;
 }
 .task_bg{
 	width: 100%;
