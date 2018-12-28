@@ -1,6 +1,6 @@
 /*底部*/
 footer{
-	width: 100%;
+    width: 100%;
     height: 0.97rem;
     background-color: #fff;
     position: fixed;
@@ -10,26 +10,35 @@ footer{
     border-top:1px solid #f3f6f5;
 }
 footer ul{
-	width: 100%;
+    width: 100%;
     height: 0.97rem;
-    overflow: hidden;
 }
 footer li{
-	width: 33%;
+    width: 33.33%;
     height: 0.97rem;
+    line-height: 0.15rem;
     font-size: 0.28rem;
     text-align: center;
     float: left;
 }
 footer a{
-	display: inline-block;
-	width: 100%;
-	height: 0.97rem;
-	font-size: 0.24rem;
-	color: #666;
-	line-height: 0.97rem;
+    display: inline-block;
+    width: 100%;
+    height: 0.97rem;
+    font-size: 0.24rem;
+    color: #666;
+    line-height: 0.3rem;
+}
+.footer_span{
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.05rem;
+}
+.footer_span img{
+    width: 100%;
+    height: 100%;
 }
 
 .footer_ul a.style {
-    color: #fc4949;
+    color:#07a0f8;
 }
