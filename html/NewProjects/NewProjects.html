@@ -37,12 +37,98 @@
 				<div class="new_task">
 					任务类型:
 					<p class="select" id="cl_sel">
-						<span class="mold"></span>
+						<span class="mold">请选择任务类型</span>
 						<img src="../../image/mine/down.png" />
 					</p>
+					<div class="select_cont">
+						<ul>
+							<li>请选择任务类型</li>
+							<li>下载注册</li>
+							<li>电商</li>
+							<li>更多任务</li>
+						</ul>
+					</div>
+				</div>
+				<div class="new_bg"></div>
+				<div class="new_task" id="task_name">
+					<label><span class="require">*</span>任务名称:</label>
+					<input type="text" class="new_text" placeholder="请输入5-20字任务名称" onkeyup="this.value = this.value.substring(5,20)" />
+				</div>
+				<div class="new_task">
+					<label>任务连接:</label>
+					<input type="text" class="new_text" placeholder="请输入任务连接（选填）" />
+				</div>
+				<div class="new_bg"></div>
+				<div class="task_step">
+					<label class="step_name"><span class="require">*</span>任务步骤1:</label>
+					<input type="text" class="task_text" placeholder="请填写任务步骤说明" />
+					
+					<ul class="upload_pic">
+						<li>
+							<label class="upload_pictures" id="localImag1">
+								<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add1">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+						<li>
+							<label class="upload_pictures" id="localImag2">
+								<input class="fileInput" id="doc2" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview2();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add2">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview2" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+						<li>
+							<label class="upload_pictures" id="localImag3">
+								<input class="fileInput" id="doc3" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview3();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add3">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview3" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+					</ul>
+					<button type="button" class="add_btn"><img src="../../image/NewProjects/add.png" />添加任务步骤</button>
+				</div>
+				<div class="click_image">
+					<label class="step_name"><span class="require">*</span>审核示例图:</label>
+					<span class="step_state">请上传用户完成任务后需提交的示例截图作为任务完成的判定标准" </span>
+					<ul class="upload_pic">
+						<li>
+							<label class="upload_pictures" id="localImag1">
+								<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add1">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+						<li>
+							<label class="upload_pictures" id="localImag2">
+								<input class="fileInput" id="doc2" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview2();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add2">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview2" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+						<li>
+							<label class="upload_pictures" id="localImag3">
+								<input class="fileInput" id="doc3" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview3();">
+								<img src='../../image/mine/unpload_smoal.png' class="add" id="add3">
+								<p class="upolad_txt">最多三张</p>
+								<img id="preview3" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						</li>
+					</ul>
+				</div>
+				<div class="sub_task">
+					<label>提交文字:</label>
+					<textarea placeholder="请输入任务所需要提交的文字内容 如:手机号码或者用户昵称等与任务相关文字(选填)" onkeyup="this.value = this.value.substring(0,50)" class="task_mess" value=""></textarea>
+				</div>
+				<div class="next_step">
+					<button type="button" onclick="window.location='task_designing.html'">下一步</button>
 				</div>
 			</div>
-			
 		</div>
 		<footer class="footer_bottom">
 			<ul class="footer_ul">
@@ -69,7 +155,30 @@
 					</a>
 				</li>
 			</ul>
-		</footer>	
+		</footer>
+		<div id="modal_help" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close">×</span>
+				</div>
+				<div class="modal-title">
+					<span>任务规则</span>
+				</div>
+				<div class="modal-body">
+					<p>为了创造一个良好、和谐、诚信的交易环境，请遵守以下规定:</p>
+					<ul>
+						<li>1.不得发布含有违法违规内容的任务信息。</li>
+						<li>2.不得发布与竞品相关的任务信息。</li>
+						<li>3.禁止拉人任务，例如：通过平台完成微信群，QQ群等好友添加任务。</li>
+						<li>4.禁止另行悬赏行为，例如完成任务后另行添加好友后发放任务奖励。</li>
+						<li>5.禁止发布虚假信息任务，例如发布不可能完成任务，或通过率极低的任务、任务信息不明确，通过率极差的任务。</li>
+						<li>6.任务将根据提交的审核信息+提交内容作为审核标准，若审核周期超过审核周期则自动默认为审核通过，为用户发放奖励。</li>
+						<li>7.如遇骗单、用假图、PS图冒充审核图片行为的，请保留好证据及时向平台举报反映，严重者将面临封号处罚。</li>
+						<li>8.禁止添加虚假连接，个人二维码代替公众号二维码行为，任务步骤描述需详细不得含糊不清，最好配有图例，所需提交内容明确，一经发现含有蒙骗审核，恶意发布任务行为者，将面对冻结账号，永久封号、余额不退还处理。</li>
+					</ul>
+				</div>
+			</div>
+		</div>	
 		<script type="text/javascript" src="../../assets/js/iscroll.js"></script>
 		<script type="text/javascript" src="../../js/NewProjects/NewProjects.js"></script>	
 	</body>

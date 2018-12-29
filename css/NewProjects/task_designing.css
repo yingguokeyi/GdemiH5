@@ -1,0 +1,156 @@
+.main{
+	width: 100%;
+	border-top: .01rem solid #ebebeb;
+}
+.main_cont{
+	width: 100%;
+	height: auto;
+}
+.main_cont ul{
+	width: 100%;
+	background: #fff;
+}
+.desi_ul li{
+	width: 100%;
+	height: .9rem;
+	line-height: .9rem;
+	padding: 0 .26rem;
+	border-bottom: .01rem solid #ebebeb;
+	overflow: hidden;
+}
+.desi_left{
+	width: 28%;
+	height: 100%;
+	float: left;
+	color: #333;
+	font-size: .28rem;
+}
+.desi_right{
+	width: 72%;
+	height: 100%;
+	float: right;
+	text-align: right;
+}
+.desi_text{
+	width: 90%;
+	height: 97%;
+	border:none;
+	outline: none;
+	text-align: right;
+	font-size: .26rem;
+	color: #666;
+}
+.star,#unit_price{
+	color: #fd4848;
+}
+.aid{
+	width: .34rem;
+	height: .34rem;
+	vertical-align: middle;
+	margin-left: .1rem;
+}
+.bring{
+	width: .14rem;
+	height: .26rem;
+	vertical-align: middle;
+}
+.sub_apply{
+	width: 100%;
+	margin-bottom: 1.8rem;
+	text-align: center;
+	margin-top: .9rem;
+}
+.sub_apply button{
+	width: 6.9rem;
+	height: .88rem;
+	text-align: center;
+	line-height: .88rem;
+	background: #333;
+	color: #fff;
+	border-radius: .08rem;
+	font-size: .3rem;
+}
+/*模态框*/
+.modal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    width: 80%;
+    height: 70%;
+    margin: 28% auto;
+    background-color:#fff;
+    -webkit-animation: zoom 0.6s;
+    animation: zoom 0.6s;
+    resize: both;
+    overflow: auto;
+    border-radius: .12rem;
+}
+@-webkit-keyframes zoom{
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+@keyframes zoom{
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+.modal-header{
+	width:100%;
+}
+.modal-title{
+	width:100%;
+	text-align: center;
+	font-size: .3rem;
+	color: #333;
+}
+.close{
+    color: #b7b7b7;
+    font-size: .6rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    float: right;
+    margin-right: .2rem;
+}
+.modal-body{
+	width: 100%;
+	height: auto;
+	margin-top: .28rem;
+}
+.modal-body p{
+	width:100%;
+	font-size: .26rem;
+	color: #333;
+	padding: 0 .26rem;
+	margin-bottom: .5rem;
+}
+.modal-body ul{
+	width:100%;
+	font-size: .26rem;
+	color: #666;
+	padding: 0 .26rem;
+}
+.modal-body ul li{
+	width: 100%;
+	margin-bottom: .42rem;
+}
+#modal_timer .modal-content,#modal_cycle .modal-content{
+	height: 18%;
+	margin: 50% auto;
+}
+#modal_timer .modal-body,#modal_cycle .modal-body{
+	text-align: center;
+	color: #666;
+	font-size: .26rem;
+	padding: 0 .26rem;
+	margin-bottom: .5rem;
+}
