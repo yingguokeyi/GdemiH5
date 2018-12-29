@@ -1,4 +1,20 @@
 
+
+/* 发布 */
+.title_top a.i_issue{  
+    width: 15%;
+    height: 0.85rem;
+    float: right;
+    text-align: right;
+    margin-right: 3%;
+}
+.title_top a.i_issue .publish{
+      height: 1rem;
+      float: right;
+      font-size: 0.26rem;
+      color: #7f7f7f; 
+}
+
 /* 任务，金额 */
 .main_middle{
     width: 100%;
@@ -131,13 +147,71 @@ a.tabhover{
 }
 .main_content_li{
     width: 100%;
-    height: 1.8rem;
+    height: 2.61rem;
     border-top: 0.01rem solid #ebebeb;
 }
 imng{
     width: 100%;
     height: 100%;
 }
+/* 新加的任务样式 */
+.main_content_li .v_venn{
+    width: 100%;
+    height:1.80rem;
+}
+.main_content_li .v_amount{
+    width: 100%;
+    height:.81rem;
+    border-top: 0.01rem solid #ebebeb;
+}
+.main_content_li .v_amount .s_scale{
+    width: 2.0rem;
+    height: .81rem;
+    line-height: .81rem;
+    font-size: 0.18rem;
+    color: #333333;
+    margin-left: 0.26rem;
+}
+.main_content_li .v_amount .s_scale .magnitude{
+    width: 2.0rem;
+    height: .81rem;
+    line-height: .81rem;
+    font-size: 0.24rem;
+    color: #333333;
+}
+.main_content_li .v_amount .s_scale .just_now{
+    font-size: 0.18rem;
+    color: #fd4848;
+} 
+.main_content_li .v_amount .s_time{
+    height: .81rem;
+    line-height: .81rem;
+    font-size: 0.24rem;
+    color: #999999;
+}
+.main_content_li .v_amount .main_content_a{
+    display: block;
+    width: 1.10rem;
+    height: 0.42rem;
+}
+.main_content_li .v_amount .main_content_a .particulars{
+    width: 1.10rem;
+    height: 0.42rem;
+    text-align: center;
+    line-height: 0.42rem;
+    color: #07a0f8;
+    font-size: 0.24rem;
+    border-radius: 0.06rem;
+    border: 0.02rem solid #07a0f8;
+    position: absolute; 
+    margin-left: 6.0rem;
+    margin-top:-0.65rem;
+
+}/* 新加的任务样式 */
+
+
+
+
 .main_content_a_left {
     width: 1.22rem;
     height: 1.22rem;
@@ -155,11 +229,11 @@ imng{
     float: left;
     margin-left: 0.55rem;
 }
-.just_now{
+/* .just_now{
     font-size: 0.24rem;
     color: #999999;
     margin-left: 0.14rem;
-}
+} */
 .m_c_a_r_top {
     display: block;
     font-size: 0.26rem;
@@ -182,25 +256,8 @@ imng{
     color: #07a0f8;
     font-weight: normal;
 }
-.main_content_a{
-    display: block;
-    width: 0.82rem;
-    height: 0.42rem;
-}
-.particulars{
-    width: 0.82rem;
-    height: 0.42rem;
-    text-align: center;
-    line-height: 0.42rem;
-    color: #07a0f8;
-    font-size: 0.24rem;
-    border-radius: 0.06rem;
-    border: 0.02rem solid #07a0f8;
-    position: absolute; 
-    margin-left: 6.2rem;
-    margin-top: 1.15rem;
 
-}
+
 /* 审核中 */
 .m_c_a_r_orange{
 	font-size: 0.26rem;
@@ -208,7 +265,7 @@ imng{
     font-weight: normal;
 }
 .aerea{
-	width: 0.82rem;
+	width:1.10rem;
     height: 0.42rem;
     text-align: center;
     line-height: 0.42rem;
@@ -217,8 +274,8 @@ imng{
     border-radius: 0.06rem;
     border: 0.02rem solid #fd9f4b;
     position: absolute; 
-    margin-left: 6.2rem;
-    margin-top: 1.15rem;
+    margin-left: 6.0rem;
+    margin-top:-0.65rem;
 }
 /* 已完成 */
 .m_c_a_r_green{

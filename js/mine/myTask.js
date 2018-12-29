@@ -160,7 +160,7 @@ function placard(){
                        
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -194,7 +194,7 @@ function placard(){
                             var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -229,7 +229,7 @@ function placard(){
                             
                             goodListHtml += '<li class="main_content_li task_apply"  data-id='+runId[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -262,7 +262,7 @@ function placard(){
                             
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -297,7 +297,7 @@ function placard(){
                             
                             goodListHtml += '<li class="main_content_li">';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/ash.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/ash.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="y_purse">'+(detailsRst[i].bonus/100).toFixed(2)+' </span>';
                             goodListHtml += '<span class="main_content_a_ash a_righ_time">';
@@ -343,7 +343,7 @@ function placard(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = '../mine/task_details.html';
+                        location.href = 'mine/task_details.html';
                     })
                     // 查看出现弹框
                     $(function(){
@@ -398,7 +398,7 @@ function placard(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = '../mine/task_details.html';
+                            location.href = 'mine/task_details.html';
 
                         })
                     })
@@ -584,7 +584,7 @@ function placard(){
                             
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -630,7 +630,7 @@ function placard(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = '../mine/task_details.html';
+                            location.href = 'mine/task_details.html';
                         })
 
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
@@ -764,7 +764,7 @@ function placard(){
                             var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -808,7 +808,7 @@ function placard(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = '../mine/task_details.html';
+                        location.href = 'mine/task_details.html';
                     })
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
                 
@@ -942,7 +942,7 @@ $('#completed').click(function(){
                             
                             goodListHtml += '<li class="main_content_li task_apply"  data-id='+runId[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -975,7 +975,7 @@ $('#completed').click(function(){
                             
                             goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="p_purse">'+(detailsRst[i].bonus/100).toFixed(2)+'</span>';
                             goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -1010,7 +1010,7 @@ $('#completed').click(function(){
                             
                             goodListHtml += '<li class="main_content_li">';
                             goodListHtml += '<span class="main_content_a_left">';
-                            goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/ash.png">';
+                            goodListHtml += '<img class="main_img" src="../../image/mine/ash.png">';
                             goodListHtml += '</span>';
                             goodListHtml += '<span class="y_purse">'+(detailsRst[i].bonus/100).toFixed(2)+' </span>';
                             goodListHtml += '<span class="main_content_a_ash a_righ_time">';
@@ -1054,7 +1054,7 @@ $('#completed').click(function(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = '../mine/task_details.html';
+                        location.href = 'mine/task_details.html';
                     })
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
                     // 查看出现弹框
@@ -1112,7 +1112,7 @@ $('#completed').click(function(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = '../mine/task_details.html';
+                            location.href = 'mine/task_details.html';
 
                         })
                     })
