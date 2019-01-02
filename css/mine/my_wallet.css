@@ -32,7 +32,7 @@
 .wallet_num{
 	width: 100%;
 	text-align: center;
-	margin-top: .3rem;
+	/* margin-top: .3rem; */
 }
 .wallet_zo{
 	font-size: .3rem;
@@ -113,4 +113,23 @@ a.first_a{
 .back_span img{
 	width: 0.14rem;
 	height: 0.26rem;
+}
+
+.title_top_center {
+    width: 32%;
+    height: 1rem;
+    float: left;
+    font-size: 0.34rem;
+}
+.wallet_total a.title_top_first {
+    width: 32%;
+    height: 0.85rem;
+    float: left;
+    text-align: left;
+    margin-left: 3%;
+}
+ .hea_img {
+    width: 0.18rem;
+    height: 0.32rem;
+    vertical-align: middle;
 }
