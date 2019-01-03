@@ -278,3 +278,41 @@ footer{
 	margin-top: 0.18rem;
 
 }
+/* 图片上的阴影部分 */
+.umbr{
+	width: 2.36rem;
+	height: 2.78rem;
+	position:absolute;
+	background: #000000;
+	opacity: 0.4;
+    margin-left: 0.26rem;
+    margin-top: -7.0rem;
+
+}
+.umbrr{
+	width: 2.36rem;
+	height: 2.78rem;
+	position:absolute;
+	background: #000000;
+	opacity: 0.4;
+	margin-left: 2.85rem;
+    margin-top: -7.0rem;
+}
+.umbrrr{
+	width: 2.36rem;
+	height: 2.78rem;
+	position:absolute;
+	background: #000000;
+	opacity: 0.4;
+    margin-left: 0.26rem;
+    margin-top: -2.8rem;
+}
+.umbrrrr{
+	width: 2.36rem;
+	height: 2.78rem;
+	position:absolute;
+	background: #000000;
+	opacity: 0.4;
+	margin-left: 2.85rem;
+    margin-top: -2.8rem;
+}
