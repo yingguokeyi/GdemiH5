@@ -14,11 +14,15 @@
 		<link rel="stylesheet" href="../../assets/css/header_common.css" />
 		<link rel="stylesheet" href="../../css/NewProjects/task_designing.css" />
 		<link rel="stylesheet" href="../../assets/layer_mobile/need/layer.css" />
+		<link rel="stylesheet" href="../../assets/css/mobileSelect.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
 		<script type="text/javascript" src="../../assets/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="../../assets/layer_mobile/layer.js"></script>
 		<script type="text/javascript" src="../../assets/js/font-size.js"></script>
+		<script type="text/javascript" src="../../assets/js/mobileSelect.js"></script>
+		<script type="text/javascript" src="../../assets/js/selectDate.js"></script>
+		
 		<script type="text/javascript" src="../../assets/js/global_variable.js"></script>
-		<script type="text/javascript" src="../../assets/js/jsonselect.js"></script>
 		<title>任务设置</title>
 	</head>
 	<body>
@@ -57,7 +61,8 @@
 							<span class="star">*</span>结束时间
 						</div>
 						<div class="desi_right">
-							<input type="text"  placeholder="数量满后自动结束" value="" class="desi_text" />
+							<!-- <input type="text"  placeholder="数量满后自动结束" value="" class="desi_text" /> -->
+							<span class="desi_text" id="endTime"><i>数量满后自动结束</i></span>
 							<img src="../../image/NewProjects/return.png" class="bring" />
 						</div>
 					</li>
@@ -66,8 +71,8 @@
 							<span class="star">*</span>任务限时
 							<img src="../../image/NewProjects/help.png" class="aid" id="timer">
 						</div>
-						<div class="desi_right">
-							<input type="text"  placeholder="最低为1小时" value="" class="desi_text" />
+						<div class="desi_right" id="desi_task">
+							<input type="text"  placeholder="最低为1小时" value="" class="desi_text select-value2" />
 							<img src="../../image/NewProjects/return.png" class="bring" />
 						</div>
 					</li>
@@ -77,7 +82,7 @@
 							<img src="../../image/NewProjects/help.png" class="aid" id="cycle">
 						</div>
 						<div class="desi_right">
-							<input type="text"  placeholder="最长审核周期为72小时" value="" class="desi_text" />
+							<input type="text"  placeholder="最长审核周期为72小时" value="" class="desi_text select-value3" />
 							<img src="../../image/NewProjects/return.png" class="bring" />
 						</div>
 					</li>
@@ -140,5 +145,7 @@
 			</div>
 		</div>
 	</body>
+	<script type="text/javascript" src="../../assets/js/style.js"></script>
+	<script type="text/javascript" src="../../assets/js/style1.js"></script>
 	<script type="text/javascript" src="../../js/NewProjects/task_designing.js"></script>
 </html>

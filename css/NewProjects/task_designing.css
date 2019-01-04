@@ -30,10 +30,12 @@
 	height: 100%;
 	float: right;
 	text-align: right;
+	color: #666;
+	font-size: .26rem;
 }
 .desi_text{
 	width: 90%;
-	height: 97%;
+	height: 95%;
 	border:none;
 	outline: none;
 	text-align: right;
