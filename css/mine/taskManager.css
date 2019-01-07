@@ -580,3 +580,16 @@ img{
     margin-left: 2.6rem;
 }
 
+/* 左边图片的钱数样式 */
+.p_purse{
+    display: block;
+    width: 1.22rem;
+    height: 0.25rem;
+    line-height: 0.25rem;
+    text-align: center;
+    position: absolute;
+    font-size: 0.26rem;
+    color: #f8c03f;
+    margin-left: 0.3rem;
+    margin-top: 0.87rem;
+}
