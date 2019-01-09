@@ -4,8 +4,12 @@ header{
 	line-height: 1rem;
 	text-align: center;
 	font-size: 0.28rem;
-	border-bottom: 0.01rem solid #f4f4f4;
+	border-bottom: 0.02rem solid #f4f4f4;
 	background-color: #FFFFFF;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 100;
 }
 /*详情头部*/
 .title_top{

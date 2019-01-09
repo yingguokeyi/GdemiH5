@@ -1,6 +1,7 @@
 .main{
 	width: 100%;
 	height: auto;
+	margin-top: 1rem;
 }
 .main_cont{
 	width: 100%;
@@ -29,7 +30,7 @@
 	width: 2.7rem;
 	height: .56rem;
 	line-height: .56rem;
-	border: .01rem solid #999;
+	border: .02rem solid #999;
 	border-radius: .06rem;
 	outline: none;
 	padding-left: .3rem;
@@ -45,13 +46,13 @@
 .select_cont{
 	width: 2.7rem;
 	height: 5rem;
-	border: .01rem solid #999;
+	border: .02rem solid #999;
 	position: absolute;
 	z-index: 100;
 	display: none;
 	overflow-y:scroll;
 	background: #fff; 
-	left: 1.6rem;
+	left: 1.67rem;
 	top:.7rem;
 }
 .select_cont ul{
@@ -62,7 +63,7 @@
 	width: 100%;
 	height: .5rem;
 	line-height: .5rem;
-	padding-left: .2rem;
+	padding-left: .3rem;
 	border-bottom: .01rem solid #999;
 }
 .new_bg{
@@ -96,7 +97,7 @@
 }
 .step_name{
 	display: inline-block;
-	width: 20%;
+	width: 21%;
 	height: 100%;
 	text-align: left;
 	margin-top: .48rem;
@@ -104,29 +105,42 @@
 	font-size: .26rem;
 	color: #333;
 }
+.task_div{
+	width: 4rem;
+	height: .56rem;
+	display: inline-block;
+	position: relative;
+}
 .task_step .task_text{
 	width: 3.7rem;
 	height: .56rem;
 	outline: none;
-	border:.01rem solid #999;
+	border:.02rem solid #999;
 	border-radius: .06rem;
 	color: #666;
 	font-size: .24rem;
 	margin-left: .24rem;
 	padding-left: .2rem;
 }
-.upload_pic{
+.del{
+	width: .18rem;
+	height: .18rem;
+	position: absolute;
+	right: .2rem;
+	top:.2rem;
+}
+.upload_pic,.upload-ul{
 	width: 100%;
 	margin-top: .34rem;
 	overflow: hidden;
 	padding: 0 .2rem;
 }
-.upload_pic li{
+.upload_pic li,.upload-ul li{
 	width: 30.8%;
 	height: 2.66rem;
 	float: left;
 }
-.upload_pic li+li{
+.upload_pic li+li,.upload-ul li+li{
 	margin-left: .26rem;
 }
 .pictures{
@@ -134,14 +148,17 @@
 	margin: .3rem 0;
 	overflow: hidden;
 }
-.upload_pictures{
+.upload_pictures,.item{
 	display: inline-block;
 	width: 100%;
 	height: 100%;
 	background: #f4f5f9;
 	text-align: center;
 }
-.upload_pictures .add{
+.item{
+	position: relative;
+}
+.upload_pictures .add,.item .add{
 	width: .88rem;
 	height:.88rem;
 	margin-top: .6rem;
@@ -151,6 +168,23 @@
 	font-size: .22rem;
 	margin-top: .1rem;
 }
+.img-input-form {
+    position: absolute;
+    width: 30.8%;
+	height: 2.66rem;
+    z-index: 999;
+}
+.img-input-form input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+	height: 2.66rem;
+}    
+.upload-image{
+	width: 100%;
+	height: 100%;
+}   
 .add_btn{
 	width: 2.54rem;
 	height: .54rem;
@@ -173,7 +207,7 @@
 	margin-bottom: .8rem;
 }
 .step_state{
-	width: 70%;
+	width: 69%;
 	color: #666;
 	font-size: .24rem;
 	margin: 0 .26rem 0 .1rem;
@@ -197,7 +231,7 @@
 .task_mess{
 	width: 70%;
 	height: 1.2rem;
-	border:.01rem solid #999;
+	border:.02rem solid #999;
 	outline: none;
 	font-size: .24rem;
 	color: #666;

@@ -10,6 +10,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta name="msapplication-tap-highlight" content="no">
+		<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
 		<link rel="stylesheet" href="../../assets/css/common.css" />
 		<link rel="stylesheet" href="../../assets/css/header_common.css" />
 		<link rel="stylesheet" href="../../assets/css/footer.css" />
@@ -18,6 +19,7 @@
 		<script type="text/javascript" src="../../assets/js/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="../../assets/layer_mobile/layer.js"></script>
 		<script type="text/javascript" src="../../assets/js/font-size.js"></script>
+		
 		<script type="text/javascript" src="../../assets/js/global_variable.js"></script>
 		<title>免费添加</title>
 	</head>
@@ -42,9 +44,15 @@
 					</p>
 					<div class="select_cont">
 						<ul>
-							<li>请选择任务类型</li>
-							<li>下载注册</li>
 							<li>电商</li>
+							<li>浏览</li>
+							<li>信用卡</li>
+							<li>下载注册</li>
+							<li>关注加粉</li>
+							<li>投票砍价</li>
+							<li>分享转发</li>
+							<li>多天任务</li>
+							<li>高价任务</li>
 							<li>更多任务</li>
 						</ul>
 					</div>
@@ -61,35 +69,25 @@
 				<div class="new_bg"></div>
 				<div class="task_step">
 					<label class="step_name"><span class="require">*</span>任务步骤1:</label>
-					<input type="text" class="task_text" placeholder="请填写任务步骤说明" />
-					
-					<ul class="upload_pic">
-						<li>
-							<label class="upload_pictures" id="localImag1">
-								<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();">
-								<img src='../../image/mine/unpload_smoal.png' class="add" id="add1">
+					<div class="task_div">
+						<input type="text" class="task_text" placeholder="请填写任务步骤说明" />
+						<!-- <img src="../../image/NewProjects/del.png" class="del"> -->
+					</div>
+					<ul class="upload-ul" id="uploadUL">
+					<!--默认的点击窗口
+						在添加了图片之后，循环在这个前面insert图片的li
+					-->
+						<li class="upload-li" id="uploadBtn">
+							<form class="img-input-form" enctype="multipart/form-data"  style="opacity: 0;">
+								<input type="file" accept="image/*" capture="camera" multiple onchange="selectImage(this)" id="upload" >
+							</form>
+							<div class="item">
+								<img src='../../image/mine/unpload_smoal.png' class="add">
 								<p class="upolad_txt">最多三张</p>
-								<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>
-							</label>
-						</li>
-						<li>
-							<label class="upload_pictures" id="localImag2">
-								<input class="fileInput" id="doc2" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview2();">
-								<img src='../../image/mine/unpload_smoal.png' class="add" id="add2">
-								<p class="upolad_txt">最多三张</p>
-								<img id="preview2" src="" width="100%" height="100%" style="display: none;"/>
-							</label>
-						</li>
-						<li>
-							<label class="upload_pictures" id="localImag3">
-								<input class="fileInput" id="doc3" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview3();">
-								<img src='../../image/mine/unpload_smoal.png' class="add" id="add3">
-								<p class="upolad_txt">最多三张</p>
-								<img id="preview3" src="" width="100%" height="100%" style="display: none;"/>
-							</label>
+							</div>
 						</li>
 					</ul>
-					<button type="button" class="add_btn"><img src="../../image/NewProjects/add.png" />添加任务步骤</button>
+					<button type="button" class="add_btn" onclick="adds(this)" data-sign='1'><img src="../../image/NewProjects/add.png" />添加任务步骤</button>
 				</div>
 				<div class="click_image">
 					<label class="step_name"><span class="require">*</span>审核示例图:</label>
@@ -178,7 +176,8 @@
 					</ul>
 				</div>
 			</div>
-		</div>	
+		</div>
+		<script type="text/javascript" src="../../assets/js/yutil-1.0.1.js"></script>	
 		<script type="text/javascript" src="../../assets/js/iscroll.js"></script>
 		<script type="text/javascript" src="../../js/NewProjects/NewProjects.js"></script>	
 	</body>

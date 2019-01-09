@@ -48,7 +48,7 @@ $(function(){
 				if(x != 0) {
 					x = x - 1;
 					$(".btn_yanzhengma").val(x + "s");
-					$('.btn_yanzhengma').css({'background':'transparent','color':'#666','border':'.01rem solid #333','border-radius': '.3rem'});
+					$('.btn_yanzhengma').css({'background':'transparent','color':'#666','border':'.02rem solid #333','border-radius': '.3rem'});
 
 				} else {
 					$(".btn_yanzhengma").val("获取验证码");
@@ -157,17 +157,17 @@ $(function(){
 			return false;
         }
 		$.ajax({
-			url: domain_name_url + "/login",
+			url: domain_name_url + "/loginHtml",
 			type: "GET",
 			dataType: "jsonp", //指定服务器返回的数据类型
 			data: {
-				method: 'addNewUserOptimize',
+				method: 'addNewUserHtml',
 				phone: number,
 				code: phone_codema,
 				inviteCode:invite_code,
 				real_name:name,
-				source: '4',
-				url_type:'login'
+				source: '5',
+				url_type:'loginHtml'
 			},
 			success: function(data) {
 				$('.mian_btn_login').attr('disabled',true);
@@ -179,13 +179,7 @@ $(function(){
 						skin: 'msg',
 						time: 2 //2秒后自动关闭
 					});
-					var lurl = window.location.href;
-					var url = localStorage.getItem('url');
-					if(lurl.indexOf("url") != -1){
-						// window.location.href=url;
-					}else{
-						// window.location.href='../mine/mine.html';
-					}
+					window.location.href='registerd_success.html';
 
 				} else if(da_success == 2){//短信验证码错误
 					layer.open({

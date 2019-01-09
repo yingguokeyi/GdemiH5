@@ -1,12 +1,14 @@
 .main{
 	width: 100%;
+	height: auto;
+	margin-top: 1rem;
 }
 #task_help{
 	margin-right: .2rem;
 }
 .task_div{
 	width: 100%;
-	margin-top: .7rem;
+	margin-top: 1.7rem;
 	padding: 0 .4rem;
 }
 .task_infor{
