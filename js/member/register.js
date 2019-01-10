@@ -179,6 +179,7 @@ $(function(){
 						skin: 'msg',
 						time: 2 //2秒后自动关闭
 					});
+					localStorage.setItem('token', data.result.rs[2].token);
 					window.location.href='registerd_success.html';
 
 				} else if(da_success == 2){//短信验证码错误
@@ -188,13 +189,20 @@ $(function(){
 						time: 2 //2秒后自动关闭
 					});
 					
-				}else if(data.success==3){//邀请人不存在
+				}else if(data.success==3){//推荐人不存在
 					layer.open({
 						content: data.errorMessage,
 						skin: 'msg',
 						time: 2 //2秒后自动关闭
 					});
 					
+				}else if(data.success==4){//手机号已绑定
+					layer.open({
+						content: data.errorMessage,
+						skin: 'msg',
+						time: 2 //2秒后自动关闭
+					});
+					window.location.href='registerd_success.html';
 				}
 			}
 		})	
