@@ -10,6 +10,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta name="msapplication-tap-highlight" content="no">
+		<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8" />
 		<link rel="stylesheet" href="../../assets/css/common.css" />
 		<link rel="stylesheet" href="../../css/mine/mine.css" />
 		<link rel="stylesheet" href="../../assets/css/footer.css" />
@@ -20,26 +21,33 @@
 		<script type="text/javascript" src="../../assets/js/font-size.js"></script>
 		<script type="text/javascript" src="../../assets/js/global_variable.js"></script>
 		<script type="text/javascript" src="../../assets/js/swiper.min.js"></script>
+		<script type="text/javascript" src="../../assets/js/jsonselect.js"></script>
 		<title>个人中心</title>
 	</head>
 	<body style="background:#fff;">
 		<div class="main">
 			<div class="main_top">
-				<ul class="hea_ul">
+				<ul class="hea_ul upload_pic">
+					<a id="fir_per" href="membership.html">
 					<li class="first">
-						<a id="fir_per" href="membership.html">
-							<img src="../../image/mine/autoPic.jpg" />
-						</a>
+						
+							<label class="upload_pictures" id="localImag1">
+								<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();" />
+								<img src='../../image/mine/tt.png' class="add" id="add1">
+								<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>
+							</label>
+						 
 					</li>
-					<li class="second">
+					<!-- <li class="second">
 						<p><span id="set_nickname">慕容莺歌</span>&nbsp;&nbsp;<i>(ID528572)</i><button class="copy" data-clipboard-action="copy" data-clipboard-target="i">复制</button></p>
 						<p class="rank">普通会员</p>
-					</li>
+					</li> -->
+				</a> 
 				</ul>
 			</div>
 			<div class="main_middle">
 				<ul>
-					<li>
+					<!-- <li>
 						<p>100.00元</p>
 						<p>当前资产</p>
 						<div class="mid_line"></div>
@@ -48,7 +56,7 @@
 					<li>
 						<p>6人</p>
 						<p>我的团队</p>
-					</li>
+					</li> -->
 				</ul>
 				<!-- 轮播 -->    
 	            <!-- <div class="swiper-container" id="lunboIdOut">
@@ -69,6 +77,7 @@
 	            	<img src="../../image/mine/banner.jpg" alt="">
 	            </div>
 			</div>
+
 			<div class="main_bot">
 				<ul>
 					<li onclick="window.location='my_team.html'">
