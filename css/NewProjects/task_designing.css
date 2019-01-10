@@ -1,6 +1,8 @@
 .main{
 	width: 100%;
+	height: auto;
 	border-top: .01rem solid #ebebeb;
+	margin-top: 1rem;
 }
 .main_cont{
 	width: 100%;

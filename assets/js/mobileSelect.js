@@ -71,12 +71,15 @@ window.MobileSelect = (function() {
 			_this.addListenerAll();
 
 			//按钮监听
-			// _this.closeBtn.addEventListener('click',function(){
-			// _this.mobileSelect.classList.remove('mobileSelect-show');
-		 //    });
+			_this.closeBtn.addEventListener('click',function(){
+				test1.src="../../image/mine/registerc.png";
+			_this.mobileSelect.classList.remove('mobileSelect-show');
+			$('#endTime').html('数量满后自动结束');
+		    });
 
 		    _this.ensureBtn.addEventListener('click',function(){
 			_this.mobileSelect.classList.remove('mobileSelect-show');
+			test1.src="../../image/mine/registernoc.png";
 			var tempValue ='';
 		    	for(var i=0; i<_this.wheel.length; i++){
 		    		i==_this.wheel.length-1 ? tempValue += _this.getValue(i) : tempValue += _this.getValue(i)+' ';
