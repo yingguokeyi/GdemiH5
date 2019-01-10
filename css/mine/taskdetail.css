@@ -76,6 +76,9 @@ img{
 /* 任务编号，创建时间，任务状态 */
 .task_info{
 	width: 100%;
+	height: auto;
+    margin-top: 1rem;
+
 }
 .taskId{
 	width: 95%;

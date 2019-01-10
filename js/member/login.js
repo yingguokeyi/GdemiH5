@@ -130,7 +130,7 @@ $(function(){
 					if(lurl.indexOf("url") != -1){
 						// window.location.href=url;
 					}else{
-						window.location.href='../home/index.html';
+						window.location.href='../mine/mine.html';
 					}
 
 				} else if(da_success == 2){//短信验证码错误

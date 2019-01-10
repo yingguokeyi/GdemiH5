@@ -1,6 +1,10 @@
 .main,.message,.message ul{
 	width: 100%;
 }
+.message{
+	height: auto;
+    margin-top: 1rem;
+}
 .message ul li{
 	width: 100%;
 	padding: 0 .26rem;

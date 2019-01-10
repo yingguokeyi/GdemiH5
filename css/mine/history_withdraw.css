@@ -2,6 +2,9 @@
 	width: 100%;
 	background: #fff;
 }
+.withdrawal_record{
+	margin-top: 1rem;
+}
 .withdrawal_record ul{
 	width: 100%;
 	height: auto;

@@ -1,5 +1,7 @@
 .main_bot{
 	width: 100%;
+	height: auto;
+	margin-top: 1rem;
 }
 .main_bot ul{
 	width: 100%;
