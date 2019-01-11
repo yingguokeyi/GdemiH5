@@ -17,6 +17,47 @@ Dsy.prototype.Exists = function(id){
 	return true;
 }
 
+// 调接口
+// 获取token
+window.jsel = JSONSelect;
+var wxName = localStorage.getItem('wx_nick_name');//拿到传过来的昵称
+var dart = localStorage.getItem('province');//拿到传过来的省
+var town = localStorage.getItem('city');//拿到传过来的市
+var zone = localStorage.getItem('county');//拿到传过来的区域
+var adds = localStorage.getItem('detailed_address');//拿到传过来的地址
+$(function(){
+	$("#te").val(wxName);
+	// 省
+	var numbers = $("#s_province").find("option"); //获取select下拉框的所有值
+	for ( var j= 0; j < numbers.length; j++) {
+		if ($(numbers[j]).val() == dart) {
+			$(numbers[j]).attr("selected", "selected");
+		}
+	
+	}
+	change(1);
+	// // 城市
+	var city = $("#s_city").find("option"); //获取select下拉框的所有值
+	for (var  i= 0; i < city.length; i++) {
+		if ($(city[i]).val() == town) {
+			$(city[i]).attr("selected", "selected");
+		}
+	}
+	change(2);
+	//县
+	var county = $("#s_county").find("option"); //获取select下拉框的所有值
+	for (var  a= 0; a < county.length; a++) {
+		if ($(county[a]).val() == zone) {
+			$(county[a]).attr("selected", "selected");
+			
+		}
+	}
+	//地址
+	$("#rt").val(adds);
+})
+
+
+
 function change(v){
 	var str="0";
 	for(i=0;i<v;i++){

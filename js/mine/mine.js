@@ -48,32 +48,55 @@ $(function (){
             url_type:"hUser"
         },
         success: function(data) {
-            var headRsd = data.hMember.result.rs[0];//我的名字，我的ID号
-            var asset =  data.userWallet.result.rs[0];//当前资产
-            var team = data.lowerCount;//我的团队人数            
+            var headRsd = data.result.rs[0].result.hMember.result.rs[0];//我的名字，我的ID号
+            var asset =  data.result.rs[0].result.userWallet.result.rs[0];//当前资产
+            var team = data.result.rs[0].result.lowerCount;//我的团队人数            
             // 头部头像，id
-             var headerHtml ='';
-             headerHtml +='<li class="second">';
-             headerHtml +='<p><span id="set_nickname">'+headRsd.real_name+'</span>&nbsp;&nbsp;<i>(ID'+headRsd.Invitation_code+')</i><button class="copy" data-clipboard-action="copy" data-clipboard-target="i">复制</button></p>';
-             headerHtml +='<p class="rank">普通会员</p>';
-             headerHtml +='</li>';
-            $('.main_top .hea_ul .first').after(headerHtml);
+            if( data.success ==1){
+                    var headerHtml ='';
+                    headerHtml +='<li class="first">';
+                    if(headRsd.image =''){
+                    headerHtml +='<label class="upload_pictures" id="localImag1">';
+                    headerHtml +='<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();" />';
+                    headerHtml +='<img src="../../image/mine/tt.png" class="add" id="add1">';
+                    headerHtml +='<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>';
+                    headerHtml +='</label>';
+                    }else{
+                    headerHtml +='<label class="upload_pictures" id="localImag1">';
+                    headerHtml +='<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();" />';
+                    headerHtml +='<img src='+headRsd.image+' class="add" id="add1">';
+                    headerHtml +='<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>';
+                    headerHtml +='</label>';
+                    }
+                    headerHtml +='</li>';
+                //  headerHtml +='';
+                    headerHtml +='<li class="second">';
+                    headerHtml +='<p><span id="set_nickname">'+headRsd.real_name+'</span>&nbsp;&nbsp;<i>(ID'+headRsd.Invitation_code+')</i><button class="copy" data-clipboard-action="copy" data-clipboard-target="i">复制</button></p>';
+                    headerHtml +='<p class="rank">普通会员</p>';
+                    headerHtml +='</li>';
+                // $('.main_top .hea_ul .first').after(headerHtml);
+                $('.main_top .hea_ul #fir_per').html(headerHtml);
+                // 团队，资产
+                var capitalHtml='';
+                capitalHtml +='<li>';
+                capitalHtml +='<p>'+(asset.balance/100).toFixed(2)+'元</p>';
+                capitalHtml +='<p>当前资产</p>';
+                capitalHtml +='<div class="mid_line"></div>';
+                capitalHtml +='</li>';
+                capitalHtml +='<li>';
+                capitalHtml +='<p>'+team+'人</p>';
+                capitalHtml +='<p>我的团队</p>';
+                capitalHtml +='</li>';
+                $('.main_middle ul').html(capitalHtml);
 
-            // 团队，资产
-            var capitalHtml='';
-            capitalHtml +='<li>';
-            capitalHtml +='<p>'+(asset.balance/100).toFixed(2)+'元</p>';
-            capitalHtml +='<p>当前资产</p>';
-            capitalHtml +='<div class="mid_line"></div>';
-            capitalHtml +='</li>';
-            capitalHtml +='<li>';
-            capitalHtml +='<p>'+team+'人</p>';
-            capitalHtml +='<p>我的团队</p>';
-            capitalHtml +='</li>';
-            $('.main_middle ul').html(capitalHtml);
-
+            }else if(data.success ==2){
+                var lurl = window.location.href;
+                var url = localStorage.getItem('url');
+                window.location.href='../member/login.html';
+            }
         }
     })
+
 
 })
 // 上传图片
@@ -97,6 +120,7 @@ function setImagePreview1(avalue) {
             add1.style.display="none";
             $('.upolad_txt').hide();
             receiptImg1();
+            ctrlId();//保存图像
         } else {
             //IE下，使用滤镜
             docObj1.select();
@@ -116,11 +140,14 @@ function setImagePreview1(avalue) {
                 return false;
             }
             receiptImg1();
+            ctrlId();//保存图像
             imgObjPreview1.style.display = 'none';
             document.selection.empty();
         }
     return true;
 }
+
+var ids1 ='';//图片id
 
 function receiptImg1() {
     var formData = new FormData();
@@ -146,12 +173,11 @@ function receiptImg1() {
         data: formData,
         processData: false,
         contentType: false,
+        async: false,//添加这个就是异步
         success: function (data) {
-            console.log(data,'ll')
             if(data.success==1){
-                var ids1 = data.result.rs[0].result.result.ids[0];
+                ids1 = data.result.rs[0].result.result.ids[0];
                 myArray.push(ids1);
-                console.log(myArray);
             }
             console.log("sendImg",data.result);
         },
@@ -159,4 +185,25 @@ function receiptImg1() {
             console.log("sendImg",data.result)
         }
     });
+}
+
+// 保存图片
+function ctrlId(){
+    console.log('kdjwe')
+    console.log(ids1)
+    $.ajax({
+        url: domain_name_url + "/hUser",
+        type: "GET",
+        dataType: "jsonp", //指定服务器返回的数据类型
+        data: {
+            method:'updateHeadImgId',
+            token:tokenMark,
+            headImgId:ids1,
+            url_type:"hUser"
+        },
+        success: function(data) {
+            console.log(data,'yu')
+        }
+    });
+
 }
