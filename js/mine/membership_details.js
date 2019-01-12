@@ -21,18 +21,19 @@ $(function(){
 	var r=parse(search);
 	var userId = r.userId;
 	$.ajax({
-		url: domain_name_url + "/invite",
+		url: domain_name_url + "/hUser",
 		type: "GET",
 		dataType: "jsonp", //指定服务器返回的数据类型
 		data: {
-			method: 'getLowerUserInfo',
+			method: 'getTeamUserInfo',
 			userId: userId,
-			url_type:"invite"
+			url_type:"hUser"
 		},
 		success: function(data) {
+			// console.log(data,'kk')
 			var deRes = data.result.rs[0];
 			if(data.success==1){
-				$('.mem_head img').attr('src', deRes.head_image);
+				$('.mem_head img').attr('src', deRes.image);
 				$('.mem_per').html(deRes.wx_nick_name);
 				$('#member_id i').html(deRes.id);
 				if(deRes.member_level==1){
@@ -42,7 +43,7 @@ $(function(){
 					$('#member_level em').html("vip");
 				}
 				$('#superior_member').html(deRes.parent_wx_nick_name);
-				$('#superior_id').html(deRes.parent_user_id);
+				$('#superior_id').html(deRes.parent_Invitation_code);
 				if(deRes.parent_member_level==1){
 					$('#super_memlevel em').html("普通会员");
 				}

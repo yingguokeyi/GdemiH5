@@ -88,3 +88,10 @@ a.first_a{
 	width: 0.14rem;
 	height: 0.26rem;
 }
+.information {
+    font-size: 0.26rem;
+    color: #999999;
+    text-align: center;
+    margin-top: 0.8rem;
+    margin-left: 2.6rem;
+}
