@@ -30,7 +30,7 @@ $(function(){
 			url_type:"hUser"
 		},
 		success: function(data) {
-			// console.log(data,'kk')
+			//  console.log(data,'kk')
 			var deRes = data.result.rs[0];
 			if(data.success==1){
 				$('.mem_head img').attr('src', deRes.image);

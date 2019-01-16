@@ -1,14 +1,20 @@
+
+// 获取token
+window.jsel = JSONSelect;
+var tokenMark = localStorage.getItem('token');//拿到传过来的token
+console.log(tokenMark,'hh')
 $(function(){
 	$.ajax({
-		url: domain_name_url + "/wallet",
+		url: domain_name_url + "/hUser",
 		type: "GET",
 		dataType: "jsonp", //指定服务器返回的数据类型
 		data: {
 			method: 'getWalletMoney',
-			userId: 4599,
-			url_type:"wallet"
+			token: tokenMark,
+			url_type:"hUser"
 		},
 		success: function(data) {
+			// console.log(data,'ee')
 			var walletRes = data.result.rs[0];
 			if(walletRes.length !=0){
 				var balance = walletRes.balance;

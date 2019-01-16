@@ -1,3 +1,7 @@
+// 获取token
+window.jsel = JSONSelect;
+var tokenMark = localStorage.getItem('token');//拿到传过来的token
+
 $(function(){
 	var listHtml = '';
 	var num = 2018;
@@ -24,17 +28,18 @@ $(function(){
 		var year = $('.year').html();
 		var month = $('.month').html();
 		$.ajax({
-	        url: domain_name_url + "/task",
+	        url: domain_name_url + "/hUser",
 	        type: "GET",
 	        dataType: "jsonp", //指定服务器返回的数据类型
 	        data: {
 	            method: 'searchTask',
-	            userId: 4599,
+				token:tokenMark,
 	            year:year,
 	            month:month,
-	            url_type:"task"
+	            url_type:"hUser"
 	        },
 	        success: function(data) {
+				// console.log(data,'暖UN')
 	        	if(data.success==1){
 	        		$('.query_list ul').show();
 	        		var queryRes = data.result.rs[0].result.result.rs;
@@ -59,10 +64,12 @@ $(function(){
 	        				queryListHtml+='￥ <span>'+(money/100).toFixed(2)+'</span>';
 	        				queryListHtml+='</div>';
 	        				queryListHtml+='</li>';
-	        			}
-	        			$('.query_list ul').html(queryListHtml);
+						}
+						$('.query_no').hide();
+						$('.query_list ul').html(queryListHtml);
 	        		}else{
-	        			$('.query_no').show();
+						$('.query_no').show();
+						$('.query_list ul').hide();
 	        		}
 	        	}else{
 
