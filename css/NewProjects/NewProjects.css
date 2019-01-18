@@ -311,37 +311,47 @@
 	width: 100%;
 	margin-bottom: .42rem;
 }
-/*登录弹框*/
-.warm_title{
-	text-align: center;
-	border-bottom: .01rem solid #ebebeb;
+/*遮罩层*/
+.mask-img {
+	display: none; 
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%; 
+	z-index: 10; 
+	background: rgba(0,0,0,.2);
 }
-.warm_title h4{
-	margin: 0;
-	font-size: .3rem;
-	color: #333;
-	margin-top:.34rem;
+
+.picture{
+	display: none; 
+	position: fixed; 
+	top: 0%; left:0%; 
+	/*transform: translate(-50%,-50%); */
+	width: 100%; 
+	height: 100%; 
+	/*line-height: 8rem; 
+	text-align:center; */
+	z-index: 20;
 }
-.warm_title p{
-	margin: 0;
-	font-size: .26rem;
-	color: #666;
-	margin-bottom: .34rem;
+.picture .phone{
+	/*vertical-align: middle; */
+	width: 100%; 
+	height: 100%; 
 }
-.warm_choose a{
-	display: inline-block;
-	width: 49%;
-	height: .8rem;
-	line-height: .8rem;
-	text-align: center;
-	font-size: .32rem;
+.picture .left{
+	position: absolute; 
+	left: .1rem; 
+	top: 45%; 
+	width: .25rem; 
+	height: .4rem; 
+	line-height: .4rem;
 }
-.warm_cancel{
-	color: #666;
-	float: right;
-}
-.warm_login{
-	color: #b61c25;
-	float: left;
-	border-right: .01rem solid #ebebeb;
+.picture .right{
+	position: absolute; 
+	right: .1rem; 
+	top: 45%; 
+	width: .25rem; 
+	height: .4rem; 
+	line-height: .4rem;
 }

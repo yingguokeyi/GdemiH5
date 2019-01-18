@@ -1,5 +1,6 @@
 $(function(){
     var uri = localStorage.getItem('uri_goods');//拿到传过来的id
+    var token = localStorage.getItem('token');
     var num='';
 	$('#test1').click(function(){
 		var test1 = document.getElementById('test1');
@@ -46,16 +47,16 @@ $(function(){
     })
     $('.report_btn button').click(function(){
         $.ajax({
-            url: domain_name_url + "/task",
+            url: domain_name_url + "/hUser",
             type: "GET",
             dataType: "jsonp", //指定服务器返回的数据类型
             data: {
                 method: 'addReport',
-                userId:4599,
+                token:token,
                 taskId:uri,
                 type: num,
                 remarks:remark,
-                url_type:'task'
+                url_type:'hUser'
             },
             success: function(data) {
 

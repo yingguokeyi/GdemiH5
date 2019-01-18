@@ -60,20 +60,20 @@
 				<div class="new_bg"></div>
 				<div class="new_task" id="task_name">
 					<label><span class="require">*</span>任务名称:</label>
-					<input type="text" class="new_text" placeholder="请输入5-20字任务名称" onkeyup="this.value = this.value.substring(5,20)" />
+					<input type="text" class="new_text" placeholder="请输入5-20字任务名称" />
 				</div>
 				<div class="new_task">
 					<label>任务连接:</label>
-					<input type="text" class="new_text" placeholder="请输入任务连接（选填）" />
+					<input type="text" class="new_text" placeholder="请输入任务连接（选填）" id="task_link" />
 				</div>
 				<div class="new_bg"></div>
 				<div class="task_step">
 					<label class="step_name"><span class="require">*</span>任务步骤1:</label>
 					<div class="task_div">
-						<input type="text" class="task_text" placeholder="请填写任务步骤说明" />
+						<input type="text" class="task_text" placeholder="请填写任务步骤说明" onblur="upperCase(this)" />
 						<!-- <img src="../../image/NewProjects/del.png" class="del"> -->
 					</div>
-					<ul class="upload_pic">
+					<ul class="upload_pic" id="picOne">
 						<li>
 							<label class="upload_pictures" id="localImag1">
 								<input class="fileInput" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview(this);">
@@ -104,7 +104,7 @@
 				<div class="click_image">
 					<label class="step_name"><span class="require">*</span>审核示例图:</label>
 					<span class="step_state">请上传用户完成任务后需提交的示例截图作为任务完成的判定标准" </span>
-					<ul class="upload_pic">
+					<ul class="upload_pic" id="pic">
 						<li>
 							<label class="upload_pictures">
 								<input class="fileInput" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1(this);">
@@ -189,19 +189,14 @@
 				</div>
 			</div>
 		</div>
-		<!-- 登录 -->
-		<div class="warm" style="display: none;">
-			<div class="warm_title">
-				<h4>温馨提示</h4>
-				<p>您还没有登录  是否要登陆</p>
-			</div>
-			<div class="warm_choose">
-				<a class="warm_login">登录</a>
-				<a class="warm_cancel">取消</a>
-				
-			</div>
-		</div>
-		<script type="text/javascript" src="../../assets/js/yutil-1.0.1.js"></script>	
+		<!--  遮罩层 -->
+	    <div class="mask-img"></div>
+	    <div class="picture">
+		    <img class="phone" src="" alt="" />
+		    <div class="left"><img src="../../image/mine/left.png" alt="" /></div>
+		    <div class="right"><img src="../../image/mine/right.png" alt="" /></div>
+	    </div>
+		<script type="text/javascript" src="../../assets/js/scroll.js"></script>	
 		<script type="text/javascript" src="../../assets/js/iscroll.js"></script>
 		<script type="text/javascript" src="../../js/NewProjects/NewProjects.js"></script>	
 	</body>

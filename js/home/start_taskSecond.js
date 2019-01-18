@@ -1,9 +1,8 @@
 $(function(){
-	var money = localStorage.getItem('money');//奖励钱
+	var money = localStorage.getItem('cash');//奖励钱
 	var Stime = localStorage.getItem('s_time');//开始时间
 	var Etime = localStorage.getItem('e_time');//结束时间
-	var smoney = (money/100).toFixed(2);
-    $('.quest_rewards i').html(smoney+'元');
+    $('.quest_rewards i').html(money+'元');
 	// 开始时间的总秒数
     var startTimetm = "20" + Stime.substring(0, 2) + "/" + Stime.substring(2, 4) + "/" + Stime.substring(4, 6) + " " + Stime.substring(6, 8) + ":" + Stime.substring(8, 10) + ":" + Stime.substring(10, 12);
     var startDate = new Date(startTimetm).getTime();

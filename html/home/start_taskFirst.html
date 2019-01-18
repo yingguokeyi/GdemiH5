@@ -38,14 +38,16 @@
 				<div class="step_line"></div>
 				<div class="step" style="padding:0">
 					<p class="step_title">请仔细查看任务步骤后按流程完成任务</p>
-					<p class="step_cont se_cont" style="padding:0 .26rem;"></p>
+					<ul style="padding:0 .26rem;" class="task_spec">
+						<p class="step_cont se_cont">任务说明</p>
+					</ul>
 					<ul class="sample_picture" id="sample_picture">
 						
 					</ul>
 				</div>
-				<div class="sub_img">
+				<div class="sub_img" style="display:none;">
 					<p class="step_title">任务提交示例图</p>
-					<ul class="sample_picture">
+					<ul class="sample_picture" id="task_sub_pic">
 						
 					</ul>
 				</div>
@@ -59,7 +61,7 @@
 		<div class="warm" style="display: none;">
 			<div class="warm_title">
 				<h4>提示</h4>
-				<p>将离开任务页面，任务领取后请在两小时内完成，否则视为作废。</p>
+				<p>将离开任务页面，任务领取后请在<i class="task_time"></i>小时内完成，否则视为作废。</p>
 			</div>
 			<div class="warm_choose">
 				<a class="warm_login">离开</a>

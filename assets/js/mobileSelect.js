@@ -160,6 +160,7 @@ window.MobileSelect = (function() {
 					_this.addListenerLi(i);
 				})(i);
 			}
+
 		},
 
 		addListenerWheel: function(theWheel, index){

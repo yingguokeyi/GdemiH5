@@ -1,35 +1,26 @@
 $(function(){
 	window.jsel = JSONSelect;
+	var token = localStorage.getItem('token');
 	var uri = localStorage.getItem('uri_goods');//拿到传过来的id
 	var small = localStorage.getItem('smallBanks');//人数
+	var dough = localStorage.getItem('cash');
 	$.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTaskInfo',
-            userId: 4623,
+            token: token,
             taskId:uri,
-            openid:'ofK6n1OSxG3xVEVWJIggOwnMcevM',
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
-        	var rs = data.result.rs[0].result.result.rs[0];
-        	var rsImg = data.result.rs[1];
-        	var rsPhone = data.result.rs[2];
+        	var rs = data.result.rs;
         	if(rs!=''){
-        		var situation = rs.state;//状态
-				var dough = rs.bonus;//奖励钱
-				var title = rs.category_name;//标题
-				var creatTime = rs.create_time;//任务时间
-				var startTime = rs.create_start_time;//开始时间
-				var endTime = rs.create_end_time;//结束时间
-				var taskEndTime = rs.task_end_time;//截止日期
-				var remark = rs.remark;
-				sStorage = window.localStorage; //本地存题目
-				sStorage.state = situation;
-                sStorage.money = dough;
-                sStorage.taskEnd = taskEndTime;
+				var title = rs[2].category_name;//标题
+				var startTime = rs[1].create_start_time;//开始时间
+				var sourceH = rs[8].source;//H5前端用户上传任务返回的数据
+				var sourceP = rs[9].source;//后台上传任务返回的数据
 				var myDate = new Date();//获取系统当前时间
 				myDate.getYear(); //获取当前年份(2位)
 				myDate.getMonth(); //获取当前月份(0-11,0代表1月)
@@ -61,6 +52,22 @@ $(function(){
 				var Minutes = myDate.getMinutes();
 				var Seconds = myDate.getSeconds();
 				var miao = myDate.getHours()*3600 + myDate.getMinutes()*60 + myDate.getSeconds();
+				if(sourceH==1){
+					var endTime = rs[15].taskTime;//结束时间
+					var creatTime = rs[3].create_time;//任务时间(判断今天，刚刚，日期)
+					var situation = rs[14].state;//状态
+					var task_id = rs[6].task_id;//用户申请任务ID
+				}
+				if(sourceP==0){
+					var endTime = rs[11].taskTime;//结束时间
+					var creatTime = rs[4].create_time;//任务时间(判断今天，刚刚，日期)
+					var situation = rs[10].state;//状态
+					var task_id = rs[7].task_id;//用户申请任务ID
+				}
+				sStorage = window.localStorage; //本地存题目
+				sStorage.state = situation;
+                sStorage.taskEnd = taskEndTime;
+                sStorage.taskID = task_id;
 				var sMonth = creatTime.substring(2, 4);//月份
 				var sDate = creatTime.substring(4, 6);//日
 				var sHour = creatTime.substring(6, 8);//小时
@@ -75,11 +82,96 @@ $(function(){
 					$('.now').html('今天');
 				}
 				//截止日期
-				var taskTime = "20" + taskEndTime.substring(0, 2) + "/" + taskEndTime.substring(2, 4) + "/" + taskEndTime.substring(4, 6) + " " + taskEndTime.substring(6, 8) + ":" + taskEndTime.substring(8, 10) + ":" + taskEndTime.substring(10, 12);
-				$('.top_money').html((dough/100).toFixed(2));//奖励钱
-				$('.expiration_date').html(taskTime);//截止日期
+				if(sourceH==1){
+					var taskEndTime = rs[12].task_end_time;//截止日期
+					var task_number = rs[13].task_number; //总的数量
+					var user_task_num = rs[11].user_task_num; //已完成的数量
+					if(taskEndTime != ''){
+						var taskTime = "20" + taskEndTime.substring(0, 2) + "/" + taskEndTime.substring(2, 4) + "/" + taskEndTime.substring(4, 6) + " " + taskEndTime.substring(6, 8) + ":" + taskEndTime.substring(8, 10) + ":" + taskEndTime.substring(10, 12);
+						$('.expiration_date').html('截止日期:'+taskTime);//截止日期
+					}else{
+						$('.expiration_date').html(user_task_num +'/'+ task_number);
+					}
+					
+				}
+				if(sourceH==0){
+					var taskEndTime = rs[6].task_end_time;//截止日期
+					var taskTime = "20" + taskEndTime.substring(0, 2) + "/" + taskEndTime.substring(2, 4) + "/" + taskEndTime.substring(4, 6) + " " + taskEndTime.substring(6, 8) + ":" + taskEndTime.substring(8, 10) + ":" + taskEndTime.substring(10, 12);
+					$('.expiration_date').html(taskTime);//截止日期
+				}
+				$('.top_money').html(dough);//奖励钱
     			$('.top_title').html(title);//标题
-    			$('#task_title').html('任务说明:'+remark)
+    			//任务说明
+    			if(sourceH==1){
+    				var slistHtml = '';
+    				var task_explay = rs[0].img;
+    				var reArr = [];
+    				for(var i=0;i<task_explay.length;i++){
+    					slistHtml += '<li>'+(i+1)+'. '+task_explay[i][0].description+'</li>';
+    					reArr.push(task_explay[i][0].description);
+    				}
+    				$('.task_specification p').after(slistHtml);
+    				sStorage = window.localStorage; //本地存题目
+					sStorage.reArr = reArr;
+    			}
+    			if(sourceP==0){
+    				var remark = rs[8].remark;
+    				$('.task_specification p').after(remark);
+    			}
+    			// 示例图片
+    			if(sourceH==1){
+    				var img = rs[0].img;
+		        	if(img!=''){
+		        		var imgList='';
+		        		var arr1 = [];
+		        		for(var i=0;i<img.length;i++){
+		        			for(var j=0;j<img[i].length;j++){
+		        				imgList += '<img src='+img[i][j].image+' />';
+		        				arr1.push(img[i][j].image);
+		        			}
+		        			
+		        		}
+		        		$('.sample_picture #picOne').html(imgList);
+		        		sStorage = window.localStorage; //本地存题目
+						sStorage.sArr1 = arr1;
+						seaImg();
+		        	}
+    			}
+	        	if(sourceP==0){
+	        		var img = rs[0].img;
+	        		if(img!=''){
+		        		var imgList='';
+		        		var arr1 = [];
+		        		for(var i=0;i<img.length;i++){
+		        			imgList += '<img src='+img[i].image+' />';
+		        			arr1.push(img[i].image);
+		        		}
+		        		$('.sample_picture #picOne').html(imgList);
+		        		sStorage = window.localStorage; //本地存题目
+						sStorage.sArr1 = arr1;
+						seaImg();
+		        	}
+	        	}
+	        	//任务提交示例图 提交信息
+	        	if(sourceH==1){
+	        		$('#task_sub_pic').show();
+	        		$('#task_sub_me').show();
+	        		var contrastImg = rs[9].contrastImg; //提交示例图
+	        		if(contrastImg!=''){
+	        			var conImgList = '';
+	        			var arr2 = [];
+		        		for(var i=0;i<contrastImg.length;i++){
+		        			conImgList += '<img src='+contrastImg[i].image+' />';
+		        			arr2.push(contrastImg[i].image);
+		        		}
+		        		$('.sample_picture #picSub').html(conImgList);
+		        		sStorage = window.localStorage; //本地存题目
+						sStorage.sArr2 = arr2;
+						seaImg();
+	        		}
+	        		var tips_words = rs[4].tips_words;//提交信息
+	        		$('#sub_message').html(tips_words);
+	        	}	
 			    // 开始时间的总秒数
 			    var startTimetm = "20" + startTime.substring(0, 2) + "/" + startTime.substring(2, 4) + "/" + startTime.substring(4, 6) + " " + startTime.substring(6, 8) + ":" + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
 			    var startDate = new Date(startTimetm).getTime();
@@ -102,9 +194,45 @@ $(function(){
 				if(situation == 0){
 					$('.txt_p').html('已有'+small+'人完成');
 					$('#task_apply').html('立即申请任务');
-					$('#task_apply').click(function(){
-						$('#modal_apply').show();
-					})
+					if(sourceP==0){
+						$('#task_apply').click(function(){
+							$('#modal_apply').show();
+						})
+					}
+					if(sourceH==1){
+						if(taskEndTime!=''){
+							$('#task_apply').click(function(){
+								$('#modal_apply').show();
+							})
+						}else{
+							$('#task_apply').click(function(){
+								$.ajax({
+							        url: domain_name_url + "/hUser",
+							        type: "GET",
+							        dataType: "jsonp", //指定服务器返回的数据类型
+							        data: {
+							            method: 'getUserTaskNum',
+							            token: token,
+							            category_id:uri,
+							            url_type:"hUser"
+							        },
+							        success: function(data) {
+							        	if(data.success==1){
+							        		var num = data.result.rs[0].result.result.rs[0].num;
+							        		if(num<task_number){
+							        			$('#modal_apply').show();
+							        		}else{
+							        			$('#task_apply').attr('disabled',true);
+												$('#task_apply').css({'backgoround':'#b4b4b4','color':'#fff'});
+							        		}
+							        	}
+							        }
+							    })
+
+							})
+						}
+					}
+					
 				}
 				if(situation == 1){
 					$('.txt_p_ti').html('任务剩余时间');
@@ -113,7 +241,7 @@ $(function(){
 				}
 				if(situation == 4){
 					$('.txt_p').html('审核失败');
-					$('#task_apply').html('重新任务');
+					$('#task_apply').html('查看任务');
 				}
 				if(situation == 5){
 					$('.txt_p').html('');
@@ -121,15 +249,38 @@ $(function(){
 					$('#task_apply').attr('disabled',true);
 					$('#task_apply').css({'backgoround':'#b4b4b4','color':'#fff'});
 				}
-				if(situation == 1 || situation == 4){
-					$('#task_apply').click(function(){
-						if(nowdate>taskEndTime){
-							$('#modal_issue').show();
-						}else{
-							location.href = 'start_taskFirst.html';
-						}
-					})	
+				if(sourceP==0){
+					if(situation == 1 || situation == 4){
+						$('#task_apply').click(function(){
+							if(nowdate>taskEndTime){
+								$('#modal_issue').show();
+							}else{
+								location.href = 'start_taskFirst.html';
+							}
+						})	
+					}
 				}
+				if(sourceH==1){
+					if(taskEndTime != ''){
+						if(situation == 1 || situation == 4){
+							$('#task_apply').click(function(){
+								if(nowdate>taskEndTime){
+									$('#modal_issue').show();
+								}else{
+									location.href = 'start_taskFirst.html';
+								}
+							})	
+						}
+					}else{
+						if(situation == 1 || situation == 4){
+							$('#task_apply').click(function(){
+								location.href = 'start_taskFirst.html';
+							})
+						}
+						
+					}
+				}
+				
 				$('#task_help').click(function(){
 					$('#modal_help').show();
 				})
@@ -181,28 +332,14 @@ $(function(){
 				}
         	}
         	//判断有没有绑定手机号
-        	var phone = rsPhone.phone;
         	$('#task_apply').click(function(){
-        		if(phone==''){
+        		if(token==null){
         			var url = window.location.href;
         			localStorage.setItem('url', window.location.href);
         			location.href = '../register/register.html?url='+url;
         		}
         	})
-        	// 图片
-        	var img = rsImg.img;
-        	if(img!=undefined){
-        		var imgList='';
-        		var arr1 = [];
-        		for(var i=0;i<img.length;i++){
-        			imgList += '<img src='+img[i].image+' />';
-        			arr1.push(img[i].image);
-        		}
-        		$('.sample_picture #picOne').html(imgList);
-        		sStorage = window.localStorage; //本地存题目
-				sStorage.sArr1 = arr1;
-				seaImg();
-        	}
+        	
         }
     })
 // 赏金猎人

@@ -1,16 +1,17 @@
 window.jsel = JSONSelect;
+var token = localStorage.getItem('token');
 var id ='';
 //任务栏page,urlStatus
 function ask(){
     // 请求数据
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getAllTask',
-            userId: 4623,
-            url_type:"task"
+            token: token,
+            url_type:"hUser"
         },
         success: function(data) {
             // console.log(data,'全部任务')
@@ -59,7 +60,7 @@ function ask(){
                      //获取开始创建时间
                      var warnsTime  = allTasks[i].task_create_time;
                      var richTime = "20"+warnsTime.substring(0, 2) + "/" + warnsTime.substring(2, 4) + "/" + warnsTime.substring(4, 6) + " " + warnsTime.substring(6, 8) + ":" + warnsTime.substring(8, 10) + ":" + warnsTime.substring(10, 12);
-                     var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)
+                     var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6) +'日';
                      var sMonth = warnsTime.substring(2, 4);//月份
                      var sDate = warnsTime.substring(4, 6);//日
                      var sHour = warnsTime.substring(6, 8);//小时
@@ -67,9 +68,9 @@ function ask(){
                      var sSecond = warnsTime.substring(10, 12);//秒
                      var sMiao = sHour*3600 + sMinute*60 + sSecond*1;//开始时间的总得秒
 
-                    goodListHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+' data-number='+peopleNumber[i]+'>';
+                    goodListHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+' data-number='+peopleNumber[i]+' data-bonus='+walletBonus[i]+'>';
                     goodListHtml += '<span class="main_content_a_left">';
-                    goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                    goodListHtml += '<img class="main_img" src="../../image/home/money.png">';
                     goodListHtml += '</span>';
                     goodListHtml += '<span class="p_purse">'+(allTasks[i].bonus/100).toFixed(2)+'</span>';
                     goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -103,7 +104,7 @@ function ask(){
                     var warnsTime  = allTasks[i].task_create_time;
                     var richTime = "20" + warnsTime.substring(0, 2) + "/" + warnsTime.substring(2, 4) + "/" + warnsTime.substring(4, 6) + " " + warnsTime.substring(6, 8) + ":" + warnsTime.substring(8, 10) + ":" + warnsTime.substring(10, 12);
                     var maggotTime = new Date(richTime).getTime();
-                    var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)
+                    var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)+'日';
                     var sMonth = warnsTime.substring(2, 4);//月份
                     var sDate = warnsTime.substring(4, 6);//日
                     var sHour = warnsTime.substring(6, 8);//小时
@@ -132,9 +133,9 @@ function ask(){
                     }
 
                      //获得现在时间-开始创建时间跟一小时进行对比得出今天和刚刚，超出一小时就是今天，反之，月份就用现在时间和开始时间进行对比
-                     goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+' data-number='+peopleNumber[i]+'>';
+                     goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+' data-number='+peopleNumber[i]+' data-bonus='+walletBonus[i]+'>';
                      goodListHtml += '<span class="main_content_a_left">';
-                     goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                     goodListHtml += '<img class="main_img" src="../../image/home/money.png">';
                      goodListHtml += ' </span>';
                      goodListHtml += '<span class="p_purse">'+(allTasks[i].bonus/100).toFixed(2)+'</span>';
                      goodListHtml += '<span class="main_content_a_right a_righ_time">';
@@ -146,28 +147,28 @@ function ask(){
                     }else if( miao-sMiao<=3600){
                         goodListHtml += '<span class="m_c_a_r_top">'+allTasks[i].category_name+'<i class="just_now">刚刚</i></span>';
                     }
-                     goodListHtml += '<span class="m_c_a_r_bottom">';
-                     goodListHtml += '<span class="m_c_a_r_bottomleft d_drew"></span>';
-                     goodListHtml += '</span>';
-                     goodListHtml += '</span>';
-                     goodListHtml += '<a  class="main_content_a">';
-                     goodListHtml += ' <div class="particulars">详情</div>';
-                     goodListHtml += ' </a>';
-                     goodListHtml += ' </li>';
+                    goodListHtml += '<span class="m_c_a_r_bottom">';
+                    goodListHtml += '<span class="m_c_a_r_bottomleft d_drew"></span>';
+                    goodListHtml += '</span>';
+                    goodListHtml += '</span>';
+                    goodListHtml += '<a  class="main_content_a">';
+                    goodListHtml += '<div class="particulars">详情</div>';
+                    goodListHtml += '</a>';
+                    goodListHtml += '</li>';
 
 
                     //当前时间大于结束时间 ，调接口,改变状态
                     if ( currentDate > endTDate) {//当前时间大于结束时间 ，调接口
                         // console.log(id,'ss')
                         $.ajax({
-                            url: domain_name_url + "/task",
+                            url: domain_name_url + "/hUser",
                             type: "GET",
                             dataType: "jsonp", //指定服务器返回的数据类型
                             data: {
                                 method: 'delTask',
-                                userId: 4623,
+                                token: token,
                                 task_id:id,
-                                url_type:"task"
+                                url_type:"hUser"
                             },
                             success: function(data) {
                                 // console.log(data,'当前时间大于结束时间')
@@ -189,16 +190,16 @@ function ask(){
                                         var warnsTime  = allTasks[i].task_create_time;
                                         var richTime = "20" + warnsTime.substring(0, 2) + "/" + warnsTime.substring(2, 4) + "/" + warnsTime.substring(4, 6) + " " + warnsTime.substring(6, 8) + ":" + warnsTime.substring(8, 10) + ":" + warnsTime.substring(10, 12);
                                         var maggotTime = new Date(richTime).getTime();
-                                        var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)
+                                        var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)+'日';
                                         var sMonth = warnsTime.substring(2, 4);//月份
                                         var sDate = warnsTime.substring(4, 6);//日
                                         var sHour = warnsTime.substring(6, 8);//小时
                                         var sMinute = warnsTime.substring(8, 10);//分钟
                                         var sSecond = warnsTime.substring(10, 12);//秒
                                         var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
-                                        rsHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+' data-number='+peopleNumber[i]+'>';
+                                        rsHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+' data-number='+peopleNumber[i]+' data-bonus='+walletBonus[i]+'>';
                                         rsHtml += '<span class="main_content_a_left">';
-                                        rsHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                                        rsHtml += '<img class="main_img" src="../../image/home/money.png">';
                                         rsHtml += '</span>';
                                         rsHtml += '<span class="p_purse">'+(fixationRs[i].bonus/100).toFixed(2)+'</span>';
                                         rsHtml += '<span class="main_content_a_right a_righ_time">';
@@ -227,9 +228,11 @@ function ask(){
                                 $('.mtw_k').click(function(){
                                     var uri = $(this).data('id');//id
                                     var pastNumber = $(this).data('number');//已完成人数
+                                    var pastMoney = $(this).data('bonus');//奖励钱
                                     sStorage = window.localStorage; //本地存题目
                                     sStorage.uri_goods = uri;//id
                                     sStorage.smallBanks = pastNumber;//已完成人数
+                                    sStorage.cash= (pastMoney/100).toFixed(2);//奖励钱
                                     location.href = 'task_details.html';
                                 })
                             }
@@ -243,7 +246,7 @@ function ask(){
                     //获取开始创建时间
                     var warnsTime = allTasks[i].task_create_time;
                     var richTime = "20"+warnsTime.substring(0, 2) + "/" + warnsTime.substring(2, 4) + "/" + warnsTime.substring(4, 6) + " " + warnsTime.substring(6, 8) + ":" + warnsTime.substring(8, 10) + ":" + warnsTime.substring(10, 12);
-                    var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)
+                    var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)+'日';
                     var sMonth = warnsTime.substring(2, 4);//月份
                     var sDate = warnsTime.substring(4, 6);//日
                     var sHour = warnsTime.substring(6, 8);//小时
@@ -252,7 +255,7 @@ function ask(){
                     var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
                     goodListHtml += '<li class="main_content_li">';
                     goodListHtml += '<span class="main_content_a_left">';
-                    goodListHtml += '<img class="main_img" src="../../image/makeEveryDay/ash.png">';
+                    goodListHtml += '<img class="main_img" src="../../image/home/ash.png">';
                     goodListHtml += '</span>';
                     goodListHtml += '<span class="y_purse">'+(allTasks[i].bonus/100).toFixed(2)+' </span>';
                     goodListHtml += '<span class="main_content_a_ash a_righ_time">';
@@ -281,8 +284,10 @@ function ask(){
             $('.mtw_k').click(function(){
                 var uri = $(this).data('id');//id
                 var pastNumber = $(this).data('number');//已完成人数
+                var pastMoney = $(this).data('bonus');//奖励钱
                 sStorage = window.localStorage; //本地存题目
                 sStorage.uri_goods = uri;//id
+                sStorage.cash= (pastMoney/100).toFixed(2);//奖励钱
                 sStorage.smallBanks = pastNumber;//已完成人数
                 location.href = 'task_details.html';
             })
@@ -297,7 +302,6 @@ function placard(){
     menuListHtml += '<li>全部任务</li>';
     $('.scroller ul').html(menuListHtml);
     $('.scroller ul').find('li:first-child').addClass('cur');
-    // ask(1,urlStatus);
     ask();
     $.fn.navbarscroll = function (options) {
         //各种属性、参数
@@ -465,14 +469,14 @@ function countdown (totalSecond,index){
                     clearInterval(d_drew.interval); 
                 },1000)
                 $.ajax({
-                    url: domain_name_url + "/task",
+                    url: domain_name_url + "/hUser",
                     type: "GET",
                     dataType: "jsonp", //指定服务器返回的数据类型
                     data: {
                         method: 'delTask',
-                        userId: 4623,
+                        token: token,
                         task_id:id,
-                        url_type:"task"
+                        url_type:"hUser"
                     },
                     success: function(data) {
                         var fixationRs = data.result.rs[0].result.result.rs;
@@ -490,16 +494,16 @@ function countdown (totalSecond,index){
                                 //获取开始创建时间
                                 var warnsTime = fixationRs[j].task_create_time;
                                 var richTime = "20"+warnsTime.substring(0, 2) + "/" + warnsTime.substring(2, 4) + "/" + warnsTime.substring(4, 6) + " " + warnsTime.substring(6, 8) + ":" + warnsTime.substring(8, 10) + ":" + warnsTime.substring(10, 12);
-                                var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)
+                                var expiryMonth = warnsTime.substring(2, 4) + "月" + warnsTime.substring(4, 6)+'日';
                                 var sMonth = warnsTime.substring(2, 4);//月份
                                 var sDate = warnsTime.substring(4, 6);//日
                                 var sHour = warnsTime.substring(6, 8);//小时
                                 var sMinute = warnsTime.substring(8, 10);//分钟
                                 var sSecond = warnsTime.substring(10, 12);//秒
                                 var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
-                                rsHtml += '<li class="main_content_li mtw_k"  data-id='+runId[j]+' data-number='+peopleNumber[j]+'>';
+                                rsHtml += '<li class="main_content_li mtw_k"  data-id='+runId[j]+' data-number='+peopleNumber[j]+' data-bonus='+walletBonus[j]+'>';
                                 rsHtml += '<span class="main_content_a_left">';
-                                rsHtml += '<img class="main_img" src="../../image/makeEveryDay/money.png">';
+                                rsHtml += '<img class="main_img" src="../../image/home/money.png">';
                                 rsHtml += '</span>';
                                 rsHtml += '<span class="p_purse">'+(fixationRs[j].bonus/100).toFixed(2)+'</span>';
                                 rsHtml += '<span class="main_content_a_right a_righ_time">';
@@ -528,8 +532,10 @@ function countdown (totalSecond,index){
                         $('.mtw_k').click(function(){
                             var uri = $(this).data('id');//id
                             var pastNumber = $(this).data('number');//已完成人数
+                            var pastMoney = $(this).data('bonus');//奖励钱
                             sStorage = window.localStorage; //本地存题目
                             sStorage.uri_goods = uri;//id
+                            sStorage.cash= (pastMoney/100).toFixed(2);//奖励钱
                             sStorage.smallBanks = pastNumber;//已完成人数
                             location.href = 'task_details.html';
                         })

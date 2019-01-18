@@ -128,7 +128,7 @@ $(function(){
 					var lurl = window.location.href;
 					var url = localStorage.getItem('url');
 					if(lurl.indexOf("url") != -1){
-						// window.location.href=url;
+						window.location.href=url;
 					}else{
 						window.location.href='../mine/mine.html';
 					}

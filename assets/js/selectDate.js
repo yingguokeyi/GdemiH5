@@ -1,10 +1,10 @@
 /**
  * Created by helang.love@qq.com on 2018/3/11.
  */
-
+var age,mon,date;
 $.extend({
     selectDate: function(g, a, k) {
-        var d, e, b;
+        var d, e, b ,y ,m;
         b = new Date;
         !a.start || !a.end || a.end < a.start ? (d = b.getFullYear() - 60, e = b.getFullYear()) : (d = a.start, e = a.end);
         b = a.select && 3 == a.select.length ? [a.select[0] - d, a.select[1] - 1, a.select[2] - 1] : [e - d, b.getMonth(), b.getDate() - 1];
@@ -20,12 +20,27 @@ $.extend({
                             value: a + "\u5e74",
                             childs: []
                         }, c = 1; 12 >= c; c++) {
-                        for (var h = [], g = 1 == c || 3 == c || 5 == c || 7 == c || 8 == c || 10 == c || 12 == c ? 31 : 2 == c ? 0 == a % 4 && 0 != a % 100 ? 29 : 0 == a % 400 ? 29 : 28 : 30, f = 1; f <= g; f++) h.push({
-                            id: f,
-                            value: f + "\u65e5"
-                        });
+                        for (var h = [], g = 1 == c || 3 == c || 5 == c || 7 == c || 8 == c || 10 == c || 12 == c ? 31 : 2 == c ? 0 == a % 4 && 0 != a % 100 ? 29 : 0 == a % 400 ? 29 : 28 : 30, f = 1; f <= g; f++){
+
+                            if(f>0 && f<10){
+                                m="0"+f;
+                            }else{
+                                m=f;
+                            }
+                            h.push({
+                                id: m,
+                                value: f + "\u65e5"
+                            });
+                        }
+                            
+                        if(c>0 && c<10){
+                            y="0"+c
+                        }else{
+                            y=c
+                        }
+                        // console.log(y);
                         e.childs.push({
-                            id: c,
+                            id: y,
                             value: c + "\u6708",
                             childs: h
                         })
@@ -40,7 +55,12 @@ $.extend({
                     year: b[0].id,
                     month: b[1].id,
                     day: b[2].id
+
                 })
+                age = b[0].id;
+                mon = b[1].id;
+                date = b[2].id;
+
             }
         })
     }

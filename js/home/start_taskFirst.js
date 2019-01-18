@@ -1,10 +1,13 @@
 $(function(){
-	var uri = localStorage.getItem('uri_goods');//拿到传过来的id
+	var token = localStorage.getItem('token');
+	var uri = localStorage.getItem('uri_goods');//任务ID
+	var taskID = localStorage.getItem('taskID');//用户申请任务ID
 	var state = localStorage.getItem('state');//状态
-	var money = localStorage.getItem('money');//奖励钱
+	var money = localStorage.getItem('cash');//奖励钱
 	var taskEndt = localStorage.getItem('taskEnd');//截止日期
-	var arrimg = localStorage.getItem('sArr1');//图片
-	
+	var arr1img = localStorage.getItem('sArr1');//图片
+	var arr2img = localStorage.getItem('sArr2');//任务提交示例图
+	var reArr = localStorage.getItem('reArr');//任务说明
 	$('.title_top_first').click(function(){
 		layer.open({
 			type: 1,
@@ -22,23 +25,39 @@ $(function(){
 		});
 	})
 	$.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'startTask',
-            userId: 4623,
-            taskId:uri,
+            category_id:uri,
+            task_id:taskID,
             status:state,
-            url_type:"task"
+            token:token,
+            url_type:"hUser"
         },
         success: function(data) {
         	if(data.success==1){
-        		var smoney = (money/100).toFixed(2);
-        		var remark = data.result.rs[0].result.result.rs[0].remark;//任务说明
+        		var source = data.result.rs[0].result.result.rs[0].source;//判断是H5前端用户还是后台上传任务返回的数据
         		var link = data.result.rs[0].result.result.rs[0].link_adress;//任务链接
-        		$('.quest_rewards i').html(smoney+'元');
-        		$('.se_cont').html('任务说明:'+remark);
+        		var task_time = data.result.rs[0].result.result.rs[0].task_time;//任务限时
+        		$('.quest_rewards i').html(money+'元');
+        		$('.task_time').html(task_time);
+        		//任务说明
+        		if(source==0){
+        			var remark = data.result.rs[0].result.result.rs[0].remark;//任务说明
+        			$('.se_cont').after(remark);
+        		}else{
+        			if(reArr!=null){
+				    	var reArrs = reArr.split(",");
+				    	var reListHtml = '';
+						for (var i = 0; i < reArrs.length; i++) {
+							reListHtml += '<li>'+(i+1)+'. '+reArrs[i]+'</li>';
+						};
+						$('.se_cont').after(reListHtml);
+			    	}
+        		}
+
         		//获取开始时间
         		var trs = data.result.rs[0].result.result.rs[0];
         		var stime = trs.create_date;
@@ -118,51 +137,102 @@ $(function(){
 				};
 				var dates = formatDateTime(timestamp);//将时间戳转化12位
 				var nowdate = dates.substring(2);
-				$('.main_middle button').click(function(){
-					if(nowdate>taskEndt){
-						$('#modal_issue').show();
-					}else if(currentDate > endTDate){
-						$('#modal_no').show();
-						$('#no_affirm').click(function(){
-							$.ajax({
-						        url: domain_name_url + "/task",
-						        type: "GET",
-						        dataType: "jsonp", //指定服务器返回的数据类型
-						        data: {
-						            method: 'upTaskFailStatus',
-						            userId: 4623,
-						            taskId:uri,
-						            url_type:"task"
-						        },
-						        success: function(data) {
-						        	if(data.success==1){
-						        		location.href = 'task_details.html';
-						        	}
-						        }
-						    })
-						})    
-					}else if(link==""){
-						location.href = 'start_taskThree.html';
-					}else{
-						location.href = 'start_taskSecond.html?link=' + link;
+				if(source==0 || source==1){
+					if(taskEndt != undefined){
+						$('.main_middle button').click(function(){
+							if(nowdate>taskEndt){
+								$('#modal_issue').show();
+							}else if(currentDate > endTDate){
+								$('#modal_no').show();
+								$('#no_affirm').click(function(){
+									$.ajax({
+								        url: domain_name_url + "/hUser",
+								        type: "GET",
+								        dataType: "jsonp", //指定服务器返回的数据类型
+								        data: {
+								            method: 'upTaskFailStatus',
+								            token: token,
+								            taskId:uri,
+								            url_type:"hUser"
+								        },
+								        success: function(data) {
+								        	if(data.success==1){
+								        		location.href = 'task_details.html';
+								        	}
+								        }
+								    })
+								})    
+							}else if(link==""){
+								location.href = 'start_taskThree.html';
+							}else{
+								location.href = 'start_taskSecond.html?link=' + link;
+							}
+						})
 					}
-				})
+				}
+				if(source==1){
+					if(taskEndt == undefined){
+						$('.main_middle button').click(function(){
+							if(currentDate > endTDate){
+								$('#modal_no').show();
+								$('#no_affirm').click(function(){
+									$.ajax({
+								        url: domain_name_url + "/hUser",
+								        type: "GET",
+								        dataType: "jsonp", //指定服务器返回的数据类型
+								        data: {
+								            method: 'upTaskFailStatus',
+								            token: token,
+								            taskId:uri,
+								            url_type:"hUser"
+								        },
+								        success: function(data) {
+								        	if(data.success==1){
+								        		location.href = 'task_details.html';
+								        	}
+								        }
+								    })
+								})
+							}else if(link==""){
+								location.href = 'start_taskThree.html';
+							}else{
+								location.href = 'start_taskSecond.html?link=' + link;
+							}
+						})
+					}
+				}
+				
+				// 提交示例图
+	        	if(source==1){
+	        		$('.sub_img').show();
+	        		if(arr2img!=null){
+				    	var arr2imgs = arr2img.split(",");
+				    	var imgsListHtml = '';
+						for (var i = 0; i < arr2imgs.length; i++) {
+							imgsListHtml += '<li><img src='+arr2imgs[i]+'></li>';
+						};
+						$('#task_sub_pic').html(imgsListHtml);
+			    	}
+	        	}
 				
         	}
         	sStorage = window.localStorage; //本地存题目
         	sStorage.s_time = stime;//开始时间
         	sStorage.e_time = etime;//结束时间
+        	sStorage.source = source;
+		    
         }
     })
     // 图片
-    if(arrimg!=null){
-    	var arrimgs = arrimg.split(",");
+    if(arr1img!=null){
+    	var arr1imgs = arr1img.split(",");
     	var imgListHtml = '';
-		for (var i = 0; i < arrimgs.length; i++) {
-			imgListHtml += '<li><img src='+arrimgs[i]+'></li>';
+		for (var i = 0; i < arr1imgs.length; i++) {
+			imgListHtml += '<li><img src='+arr1imgs[i]+'></li>';
 		};
 		$('#sample_picture').html(imgListHtml);
 		$('#sample_picture li').length<=20;
     }
+    
 	
 })
