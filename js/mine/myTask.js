@@ -1,4 +1,8 @@
+
+// 获取token
 window.jsel = JSONSelect;
+var tokenMark = localStorage.getItem('token');//拿到传过来的token
+console.log(tokenMark,'有')
 var page;
 var urlStatus;
 page = 1;
@@ -34,16 +38,17 @@ $(function(){
 // 头部的内容 ask(page,urlStatus)
 function ask(){
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTask',
-            userId: 4623,
+            token: tokenMark,
             status:1,
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
+            // console.log(data,'kh')
             //头部内容
             var headNumber = data.result.rs[1].result2;
             var headHtml ='';
@@ -71,14 +76,14 @@ function ask(){
 // tab切换---刚进到页面获取的全部数据    
 function placard(){
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTask',
-            userId: 4623,
+            token: tokenMark,
             status:1,
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
         //   console.log(data,'quanbu')
@@ -142,14 +147,14 @@ function placard(){
 
                             if (currentDate > endTDate) {//调接口
                                 $.ajax({
-                                    url: domain_name_url + "/task",
+                                    url: domain_name_url + "/hUser",
                                     type: "GET",
                                     dataType: "jsonp", //指定服务器返回的数据类型
                                     data: {
                                         method: 'delTask',
-                                        userId: 4623,
+                                        token: tokenMark,
                                         task_id:id,
-                                        url_type:"task"
+                                        url_type:"hUser"
                                     },
                                     success: function(data) {
                                          $('#orderContent ul').html('');
@@ -343,7 +348,7 @@ function placard(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = 'mine/task_details.html';
+                        location.href = '../home/task_details.html';
                     })
                     // 查看出现弹框
                     $(function(){
@@ -357,14 +362,14 @@ function placard(){
                                 var rid = $(this).data('id');//获取id
                                 $('#modal_apply').show();
                                 $.ajax({
-                                    url: domain_name_url + "/task",
+                                    url: domain_name_url + "/hUser",
                                     type: "GET",
                                     dataType: "jsonp", //指定服务器返回的数据类型
                                     data: {
                                         method: 'getTaskFail',
-                                        userId: 4623,
+                                        token: tokenMark,
                                         taskId:rid,
-                                        url_type:"task"
+                                        url_type:"hUser"
                                     },
                                     success: function(data) {
                                         if(data.success==1){
@@ -398,7 +403,7 @@ function placard(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = 'mine/task_details.html';
+                            location.href = '../home/task_details.html';
 
                         })
                     })
@@ -501,14 +506,14 @@ function placard(){
  $('#conduct').click(function(){
     $('#orderContent ul').html('');
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTask',
-            userId: 4623,
+            token: tokenMark,
             status:2,
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
             // console.log(data,'点击进行')
@@ -566,14 +571,14 @@ function placard(){
                              } 
                              if (currentDate > endTDate) {//调接口
                                 $.ajax({
-                                    url: domain_name_url + "/task",
+                                    url: domain_name_url + "/hUser",
                                     type: "GET",
                                     dataType: "jsonp", //指定服务器返回的数据类型
                                     data: {
                                         method: 'delTask',
-                                        userId: 4623,
+                                        token: tokenMark,
                                         task_id:id,
-                                        url_type:"task"
+                                        url_type:"hUser"
                                     },
                                     success: function(data) {
                                          
@@ -630,7 +635,7 @@ function placard(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = 'mine/task_details.html';
+                            location.href = '../home/task_details.html';
                         })
 
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
@@ -728,14 +733,14 @@ function placard(){
  $('#toAudit').click(function(){  
     $('#orderContent ul').html('');
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTask',
-            userId: 4623,
+            token: tokenMark,
             status:3,
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
             if(data.success==1){
@@ -808,7 +813,7 @@ function placard(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = 'mine/task_details.html';
+                        location.href = '../home/task_details.html';
                     })
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
                 
@@ -905,14 +910,14 @@ function placard(){
 $('#completed').click(function(){ 
     $('#orderContent ul').html(''); 
     $.ajax({
-        url: domain_name_url + "/task",
+        url: domain_name_url + "/hUser",
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
             method: 'getUserTask',
-            userId: 4623,
+            token:tokenMark,
             status:4,
-            url_type:"task"
+            url_type:"hUser"
         },
         success: function(data) {
         //    console.log(data,'已结束')
@@ -1054,7 +1059,7 @@ $('#completed').click(function(){
                         var gurl = window.location.href;
     
                         localStorage.setItem('gurl', window.location.href);
-                        location.href = 'mine/task_details.html';
+                        location.href = '../home/task_details.html';
                     })
                     $(this).addClass("tabhover").parent().siblings().find("a").removeClass("tabhover");
                     // 查看出现弹框
@@ -1070,14 +1075,14 @@ $('#completed').click(function(){
                                 $('#modal_apply').show();
                                 var rid = $(this).data('id');//获取id
                                 $.ajax({
-                                    url: domain_name_url + "/task",
+                                    url: domain_name_url + "/hUser",
                                     type: "GET",
                                     dataType: "jsonp", //指定服务器返回的数据类型
                                     data: {
                                         method: 'getTaskFail',
-                                        userId: 4623,
+                                        token: tokenMark,
                                         taskId:rid,
-                                        url_type:"task"
+                                        url_type:"hUser"
                                     },
                                     success: function(data) {
                                         if(data.success==1){
@@ -1112,7 +1117,7 @@ $('#completed').click(function(){
                             var gurl = window.location.href;
         
                             localStorage.setItem('gurl', window.location.href);
-                            location.href = 'mine/task_details.html';
+                            location.href = '../home/task_details.html';
 
                         })
                     })
@@ -1289,14 +1294,14 @@ function countdown (totalSecond,index){
                     clearInterval(d_drew.interval); 
                 },1000)
                 $.ajax({
-                    url: domain_name_url + "/task",
+                    url: domain_name_url + "/hUser",
                     type: "GET",
                     dataType: "jsonp", //指定服务器返回的数据类型
                     data: {
                         method: 'delTask',
-                        userId: 4623,
+                        token: tokenMark,
                         task_id:id,
-                        url_type:"task"
+                        url_type:"hUser"
                     },
                     success: function(data) {
                         $('#orderContent ul').html('');
