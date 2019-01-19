@@ -197,7 +197,7 @@ function placard(){
                             var sMinute = warnsTime.substring(8, 10);//分钟
                             var sSecond = warnsTime.substring(10, 12);//秒
                             var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
-                            goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
+                            goodListHtml += '<li class="main_content_li" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
                             goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';
@@ -767,7 +767,7 @@ function placard(){
                             var sMinute = warnsTime.substring(8, 10);//分钟
                             var sSecond = warnsTime.substring(10, 12);//秒
                             var sMiao = sHour*3600 + sMinute*60 + sSecond*1;
-                            goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
+                            goodListHtml += '<li class="main_content_li" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+' data-task_create_time='+beginTime[i]+' data-create_time='+foundTime[i]+'>';
                             goodListHtml += '<span class="main_content_a_left">';
                             goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
                             goodListHtml += '</span>';

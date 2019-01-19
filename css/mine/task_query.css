@@ -27,7 +27,7 @@
 .select_cont{
 	width: 1.7rem;
 	height: 5rem;
-	border: .01rem solid #999;
+	border: .02rem solid #999;
 	position: absolute;
 	z-index: 100;
 	display: none;
