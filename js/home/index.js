@@ -2,13 +2,22 @@ window.jsel = JSONSelect;
 var token = localStorage.getItem('token');
 if(token == null) {
     layer.open({
-        content: '请先登录',
-        skin: 'msg',
-        time: 2
+        type: 1,
+        content: $('.warm').html(),
+        anim: 'up',
+        scrollbar: false,
+        shadeClose: false,
+        style: 'position:fixed;bottom:50%;left: 8%; right:8%;height: auto;border:none;border-radius:6px'
     });
-    var url = window.location.href;
-    setTimeout("location.href='../member/login.html?url=" + url + "'", 1000);
-    localStorage.setItem('url', window.location.href);
+    $(document).on("click", ".warm_login", function(){
+        var url = window.location.href;
+        setTimeout("location.href='../member/login.html?url=" + url + "'", 1000);
+        localStorage.setItem('url', window.location.href);
+    });
+    $(document).on("click", ".warm_cancel", function() {
+        layer.closeAll('page');
+    });
+    
 }else{
     var id ='';
     //任务栏page,urlStatus
