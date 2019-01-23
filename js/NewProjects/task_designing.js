@@ -155,7 +155,11 @@ $(function(){
 				url_type:'task'
 			},
 			success: function(data) {
-
+				if(data.success==1){
+					$('#sub_btn').attr('disabled',true);
+					$('#sub_btn').css({'background':'#b4b4b4','color':'#fff'});
+				}
+				
 			}
 		})
 

@@ -124,7 +124,7 @@ $(function(){
 						time: 2 //2秒后自动关闭
 					});
 					localStorage.setItem('token', data.result.rs[2].token);
-				    console.log(localStorage.setItem('token', data.result.rs[2].token))
+				    // console.log(localStorage.setItem('token', data.result.rs[2].token))
 					var lurl = window.location.href;
 					var url = localStorage.getItem('url');
 					if(lurl.indexOf("url") != -1){
@@ -140,6 +140,13 @@ $(function(){
 						time: 2 //2秒后自动关闭
 					});
 					
+				}else if(da_success == 3){//该手机号不存在
+					layer.open({
+						content: data.errorMessage,
+						skin: 'msg',
+						time: 3 //3秒后自动关闭
+					});
+					window.location.href='register.html';
 				}
 			}
 		})	
