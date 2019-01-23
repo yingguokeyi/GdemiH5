@@ -328,6 +328,10 @@ if(token == null) {
                     $(document).on("click", ".warm_cancel", function() {
                         layer.closeAll('page');
                     });
+                }else if(data.success==3){
+                    var nlistHtml = '';
+                    nlistHtml += '<li style="width:100%;text-align:center;margin-top:1rem;color:#999;">无任务</li>'
+                    $('#orderContent ul').html(nlistHtml);
                 }
                 
 

@@ -26,6 +26,7 @@ $(function(){
 				$('#unit_price').val('0.12');
 			}
 		}
+
 	})
 	$('#unit_num').blur(function(){
 		var numVal = $('#unit_num').val();
@@ -90,6 +91,46 @@ $(function(){
 		var aduit = auditCycle.substring(0,2);
 		// console.log(aduit)
 		var endTimes = $('#endTime').html();//结束时间
+		if(proceVals==''){
+			layer.open({
+		        content: '请填写单价',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+		}
+		if(numVals==''){
+			layer.open({
+		        content: '请填写数量',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+		}
+		if(timeLimit==''){
+			layer.open({
+		        content: '请填写任务限时',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+		}
+		if(auditCycle==''){
+			layer.open({
+		        content: '请填写审核周期',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+		}
+		if(endTimes==''){
+			layer.open({
+		        content: '请填写结束时间',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+		}
 		if(endTimes=="数量满后自动结束"){
 			taskEnd="";
 		}
@@ -158,6 +199,7 @@ $(function(){
 				if(data.success==1){
 					$('#sub_btn').attr('disabled',true);
 					$('#sub_btn').css({'background':'#b4b4b4','color':'#fff'});
+					window.location.href='task_success.html';
 				}
 				
 			}
