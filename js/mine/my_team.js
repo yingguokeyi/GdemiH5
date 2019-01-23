@@ -22,6 +22,7 @@ $(function(){
 				url_type:"hUser"
 			},
 			success: function(data) {
+				console.log(data,'我的团队')
 				if(data.success==1){
 					var inviteRes = data.result.rs[0].result;
 					var nntRes = data.result.rs[1].num[0];
@@ -66,6 +67,7 @@ $(function(){
 	}
 	// 直系邀请人
 	$('#direct_invitation').click(function(){
+		$('#orderContent ul').html('');
 		$.ajax({
 			url: domain_name_url + "/hUser",
 			type: "GET",
@@ -76,9 +78,10 @@ $(function(){
 				url_type:"hUser"
 			},
 			success: function(data) {
+				console.log(data,'直系邀请人')
 				if(data.success==1){
 
-					var inviteRes = data.result.rs;
+					var inviteRes = data.result.rs[0].result.result.rs;
 					var runId = jsel.match('.id', inviteRes);//获得id
 					var img = jsel.match('.image', inviteRes);//获得图片
 					var memberLevel= jsel.match('.member_level', inviteRes);//获得判断是普通会员还是vip
@@ -123,6 +126,7 @@ $(function(){
 	})
 	// 二级邀请人
 	$('#second_invitation').click(function(){
+		$('#orderContent ul').html('');
 		$.ajax({
 			url: domain_name_url + "/hUser",
 			type: "GET",
@@ -134,8 +138,8 @@ $(function(){
 			},
 			success: function(data) {
 				if(data.success==1){
-					var inviteRes = data.result.rs;
 
+					var inviteRes = data.result.rs[0].result.result.rs;
 					var runId = jsel.match('.id', inviteRes);//获得id
 					var img = jsel.match('.image', inviteRes);//获得图片
 					var memberLevel= jsel.match('.member_level', inviteRes);//获得判断是普通会员还是vip
