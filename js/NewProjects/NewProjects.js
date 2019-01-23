@@ -321,5 +321,43 @@ if(token == null) {
        
     }
     seaImg();
+    $('.next_step button').click(function(){
+    	var mold = $('.mold').html();//任务类型
+    	var tasksName = $('#task_name input').val();//任务链接
+    	console.log(arr);
+    	console.log(datas);
+    	if(mold=='请选择任务类型'){
+    		layer.open({
+		        content: '请填写任务类型',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+    	}else if(tasksName == ''){
+    		layer.open({
+		        content: '请填写任务名称',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+    	}else if(arr.length==0){
+    		layer.open({
+		        content: '请填写审核示例图',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+    	}else if(JSON.stringify(datas) == "{}"){
+    		layer.open({
+		        content: '请填写任务步骤',
+		        skin: 'msg',
+		        time: 2
+		    });
+		    return false;
+    	}else{
+    		location.href='task_designing.html';
+    	}
+    	
+    })
 }
 
