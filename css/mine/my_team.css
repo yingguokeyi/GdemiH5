@@ -89,6 +89,8 @@ a.first_a{
 	height: 0.26rem;
 }
 .information {
+	height: 4rem;
+	line-height: 4rem;
     font-size: 0.26rem;
     color: #999999;
     text-align: center;
