@@ -19,6 +19,34 @@ if(token == null) {
     });
     
 }else{
+    $.ajax({
+        url: domain_name_url + "/hUser",
+        type: "GET",
+        dataType: "jsonp", //指定服务器返回的数据类型
+        data: {
+            method: 'getAllTaskNum',
+            token: token,
+            url_type:"hUser"
+        },
+        success: function(data) {
+            if(data.success==1){
+                var taskNumber = data.result.rs[0].result.result.rs[0];
+                // 任务，金额
+                var sessionsHtml ='';
+                sessionsHtml += '<li>';
+                sessionsHtml += '<p>'+taskNumber.num+'个</p>';
+                sessionsHtml += '<p>今日任务</p>';
+                sessionsHtml += '<div class="mid_line"></div>';
+                sessionsHtml += '</li>';
+
+                sessionsHtml += '<li>';
+                sessionsHtml += '<p>'+(taskNumber.money/100).toFixed(2)+'元</p>';
+                sessionsHtml += '<p>奖励总金额</p>';
+                sessionsHtml += '</li>';
+                $('.main_middle ul').html(sessionsHtml);
+            }
+        }
+    })    
     var id ='';
     //任务栏page,urlStatus
     function ask(){
@@ -36,20 +64,6 @@ if(token == null) {
                 // console.log(data,'全部任务')
                 if(data.success==1){
                     var rsMain = data.result.rs;
-                    var taskNumber = data.result.rs[1].result2;
-                    // 任务，金额
-                    var sessionsHtml ='';
-                    sessionsHtml += '<li>';
-                    sessionsHtml += '<p>'+taskNumber.num+'个</p>';
-                    sessionsHtml += '<p>今日任务</p>';
-                    sessionsHtml += '<div class="mid_line"></div>';
-                    sessionsHtml += '</li>';
-
-                    sessionsHtml += '<li>';
-                    sessionsHtml += '<p>'+(taskNumber.money/100).toFixed(2)+'元</p>';
-                    sessionsHtml += '<p>奖励总金额</p>';
-                    sessionsHtml += '</li>';
-                    $('.main_middle ul').html(sessionsHtml);
                     // 全部任务
                     var allTasks = data.result.rs[0].result;
                     var runId = jsel.match('.id', allTasks);//获得id
