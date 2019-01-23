@@ -428,32 +428,32 @@ $(function(){
 			}
 			$('.main').html(getHtml);
 
-			$('.tails').click(function(){
+			// $('.tails').click(function(){
 
-				var uri = $(this).data('id');//id
-				var pastTitle = $(this).data('category_name');//标题名字
-				var pastState= $(this).data('type');//类型
-				var board = $(this).data('link_adress');//链接
-				var unsigned=$(this).data('description');//类型说明
-				var typePrint =$(this).data('image');//类型图片
-				var reviewImages =$(this).data('audit');//审核图片
-				sStorage = window.localStorage; //本地存题目
+			// 	var uri = $(this).data('id');//id
+			// 	var pastTitle = $(this).data('category_name');//标题名字
+			// 	var pastState= $(this).data('type');//类型
+			// 	var board = $(this).data('link_adress');//链接
+			// 	var unsigned=$(this).data('description');//类型说明
+			// 	var typePrint =$(this).data('image');//类型图片
+			// 	var reviewImages =$(this).data('audit');//审核图片
+			// 	sStorage = window.localStorage; //本地存题目
 
-				sStorage.uri_goods = uri;//id
-				sStorage.slogan= pastTitle;//标题
-				sStorage.equation= pastState;//获得类型
-				sStorage.endingTime = board;//链接
-				sStorage.typedef = unsigned;//类型说明
-				sStorage.genre=typePrint;//类型图片
-				sStorage.checkk=reviewImages;//审核图片
+			// 	sStorage.uri_goods = uri;//id
+			// 	sStorage.slogan= pastTitle;//标题
+			// 	sStorage.equation= pastState;//获得类型
+			// 	sStorage.endingTime = board;//链接
+			// 	sStorage.typedef = unsigned;//类型说明
+			// 	sStorage.genre=typePrint;//类型图片
+			// 	sStorage.checkk=reviewImages;//审核图片
 
 
-				var gurl = window.location.href;
+			// 	var gurl = window.location.href;
 
-				localStorage.setItem('gurl', window.location.href);
-				location.href = '../NewProjects/NewProjects.html';
+			// 	localStorage.setItem('gurl', window.location.href);
+			// 	location.href = '../NewProjects/NewProjects.html';
                
-            })
+   //          })
         
         }
     

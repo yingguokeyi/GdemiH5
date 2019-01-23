@@ -136,7 +136,7 @@ function placard(){
                    goodListHtml += '</span>';
                    goodListHtml += '</span>';
                    goodListHtml += '<span class="v_amount">';
-                   goodListHtml += '<span class="s_scale"><i class="magnitude">数量</i>：<i class="just_now">￥￥'+(cutRst[i].bonus/100).toFixed(2)+'</i>/'+cutRst[i].task_number+'</span>';
+                   goodListHtml += '<span class="s_scale"><i class="magnitude">数量</i>：<i class="just_now">￥'+(cutRst[i].bonus/100).toFixed(2)+'</i>/'+cutRst[i].task_number+'</span>';
                    goodListHtml += '<span class="s_time">数量满后自动结束</span>';
                    goodListHtml += '<a href="#" class="main_content_a">';
                    goodListHtml += '<div class="failure">审核失败</div>';
