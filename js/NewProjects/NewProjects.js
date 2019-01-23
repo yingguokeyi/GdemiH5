@@ -1,4 +1,13 @@
+window.jsel = JSONSelect;
 var token = localStorage.getItem('token');
+var theTitleName =localStorage.getItem('slogan');//标题名字
+var category = localStorage.getItem('equation');//类型
+var chaining = localStorage.getItem('endingTime');//链接
+var struct = localStorage.getItem('typedef');//类型说明
+var ico = localStorage.getItem('genre');//类型图片
+var rImg = localStorage.getItem('checkk');//审核图片
+console.log(theTitleName,category,struct,chaining,ico,rImg,'标题名字')
+
 if(token == null) {
     layer.open({
         content: '请先登录',

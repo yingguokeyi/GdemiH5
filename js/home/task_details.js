@@ -107,6 +107,7 @@ $(function(){
     				var task_explay = rs[0].img;
     				var reArr = [];
     				for(var i=0;i<task_explay.length;i++){
+					
     					slistHtml += '<li>'+(i+1)+'. '+task_explay[i][0].description+'</li>';
     					reArr.push(task_explay[i][0].description);
     				}
@@ -126,6 +127,7 @@ $(function(){
 		        		var arr1 = [];
 		        		for(var i=0;i<img.length;i++){
 		        			for(var j=0;j<img[i].length;j++){
+							
 		        				imgList += '<img src='+img[i][j].image+' />';
 		        				arr1.push(img[i][j].image);
 		        			}
