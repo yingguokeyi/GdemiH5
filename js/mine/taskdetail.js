@@ -164,7 +164,8 @@ $(function(){
 				
 				getHtml +='<span class="quest_one">审核示例图：<i class="a_account"></i></span>';
 				getHtml +='<div class="photo_two">';
-				var audit = hadoop[7].contrastImg;//审核图片
+
+				var audit = hadoop[8].contrastImg;//审核图片
 
 				for(var j=0;j<audit.length;j++){
 						getHtml +='<img src='+audit[j].auditImage+'/>';
