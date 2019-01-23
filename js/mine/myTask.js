@@ -86,7 +86,7 @@ function placard(){
             url_type:"hUser"
         },
         success: function(data) {
-        //   console.log(data,'quanbu')
+        //  console.log(data,'quanbu')
             if(data.success==1){
                 var cutRst = data.result.rs[1].result2;//tab里面的内容
                 var detailsRst = data.result.rs[0].result;//获取的内容

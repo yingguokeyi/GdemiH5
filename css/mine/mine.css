@@ -43,13 +43,15 @@
 
 .copy{
 	width: .64rem;
-	height: .32rem;
+	height: .35rem;
 	border:.01rem solid #333;
 	border-radius: .04rem;
 	text-align: center;
-	line-height: .32rem;
+	line-height: .35rem;
 	background: transparent;
 	margin-left: .32rem;
+	font-size: 0.2rem;
+	padding-top: 0.02rem;
 }
 .rank{
 	font-size: .24rem;

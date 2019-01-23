@@ -29,7 +29,7 @@ $(function(){
 				getHtml +='<a href="javascript:history.back(-1)" class="title_top_first">';
 				getHtml +='<img src="../../image/mine/return.png" class="hea_img" />';
 				getHtml +='</a>';
-				getHtml +='<span class="title_top_center" style="font-size:.26rem;">任务详情</span>';
+				getHtml +='<span class="title_top_center" style="font-size:.26rem;">发布详情</span>';
 				getHtml +='</div>';
 				getHtml +='</header>';
 				
@@ -126,7 +126,7 @@ $(function(){
 				getHtml +='<a href="javascript:history.back(-1)" class="title_top_first">';
 				getHtml +='<img src="../../image/mine/return.png" class="hea_img" />';
 				getHtml +='</a>';
-				getHtml +='<span class="title_top_center" style="font-size:.26rem;">任务详情</span>';
+				getHtml +='<span class="title_top_center" style="font-size:.26rem;">发布详情</span>';
 				getHtml +='</div>';
 				getHtml +='</header>';
 				
@@ -230,7 +230,7 @@ $(function(){
 				getHtml +='<a href="javascript:history.back(-1)" class="title_top_first">';
 				getHtml +='<img src="../../image/mine/return.png" class="hea_img" />';
 				getHtml +='</a>';
-				getHtml +='<span class="title_top_center" style="font-size:.26rem;">任务详情</span>';
+				getHtml +='<span class="title_top_center" style="font-size:.26rem;">发布详情</span>';
 				getHtml +='</div>';
 				getHtml +='</header>';
 
@@ -331,7 +331,7 @@ $(function(){
 				getHtml +='<a href="javascript:history.back(-1)" class="title_top_first">';
 				getHtml +='<img src="../../image/mine/return.png" class="hea_img" />';
 				getHtml +='</a>';
-				getHtml +='<span class="title_top_center" style="font-size:.26rem;">任务详情</span>';
+				getHtml +='<span class="title_top_center" style="font-size:.26rem;">发布详情</span>';
 				getHtml +='</div>';
 				getHtml +='</header>';
 				

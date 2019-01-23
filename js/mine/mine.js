@@ -73,26 +73,29 @@ if(tokenMark == null) {
                         var headerHtml ='';
                         headerHtml +='<li class="first">';
                         if(headRsd.image =''){
+                       
                         headerHtml +='<label class="upload_pictures" id="localImag1">';
                         headerHtml +='<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();" />';
                         headerHtml +='<img src="../../image/mine/tt.png" class="add" id="add1">';
                         headerHtml +='<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>';
                         headerHtml +='</label>';
                         }else{
+                       
                         headerHtml +='<label class="upload_pictures" id="localImag1">';
                         headerHtml +='<input class="fileInput" id="doc1" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview1();" />';
                         headerHtml +='<img src='+headRsd.image+' class="add" id="add1">';
                         headerHtml +='<img id="preview1" src="" width="100%" height="100%" style="display: none;"/>';
                         headerHtml +='</label>';
+                        
                         }
                         headerHtml +='</li>';
-                    //  headerHtml +='';
+                  
                         headerHtml +='<li class="second">';
-                        headerHtml +='<p><span id="set_nickname">'+headRsd.real_name+'</span>&nbsp;&nbsp;<i>(ID'+headRsd.Invitation_code+')</i><button class="copy" data-clipboard-action="copy" data-clipboard-target="i">复制</button></p>';
+                        headerHtml +='<p><a id="fir_per" style="color: #333;"  href="membership.html"><span id="set_nickname">'+headRsd.real_name+'</span>&nbsp;&nbsp;<i>(ID'+headRsd.Invitation_code+')</i></a><button class="copy" data-clipboard-action="copy" data-clipboard-target="i">复制</button></p>';
                         headerHtml +='<p class="rank">普通会员</p>';
                         headerHtml +='</li>';
                     // $('.main_top .hea_ul .first').after(headerHtml);
-                    $('.main_top .hea_ul #fir_per').html(headerHtml);
+                    $('.main_top .hea_ul').html(headerHtml);
                     // 团队，资产
                     var capitalHtml='';
                     capitalHtml +='<li>';

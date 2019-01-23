@@ -137,7 +137,6 @@ $(function(){
 			},
 			success: function(data) {
 				if(data.success==1){
-
 					var inviteRes = data.result.rs[0].result.result.rs;
 					var runId = jsel.match('.id', inviteRes);//获得id
 					var img = jsel.match('.image', inviteRes);//获得图片
