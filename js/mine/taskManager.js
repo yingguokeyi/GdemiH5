@@ -72,7 +72,7 @@ function placard(){
             url_type:"hUser"
         },
         success: function(data) {
-        //  console.log(data,'quanbu')
+        // console.log(data,'quanbu')
          if(data.success==1){
             var cutRst = data.result.rs[0].result.result.rs;
             var runId = jsel.match('.id', cutRst);//获得id
@@ -125,7 +125,7 @@ function placard(){
                     goodListHtml += '</span>';
                     goodListHtml += '</li>'; 
                }else if(cutRst[i].status == 2){//审核失败
-                   goodListHtml += '<li class="main_content_li" id="l_doum" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+'>';
+                   goodListHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+'>';
                    goodListHtml += '<span class="v_venn">';
                    goodListHtml += '<span class="main_content_a_left">';
                    goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
@@ -144,7 +144,7 @@ function placard(){
                    goodListHtml += '</span>';
                    goodListHtml += '</li>'; 
            }else if(cutRst[i].status == 3){//已结束
-                    goodListHtml += '<li class="main_content_li mtw_k" data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+'>';
+                    goodListHtml += '<li class="main_content_li mtw_k"  data-id='+runId[i]+'  data-state='+phaseState[i]+'  data-bonus='+walletBonus[i]+'  data-category_name='+captionName[i]+' data-create_end_time='+stopTime[i]+'>';
                     goodListHtml += '<span class="v_venn">';
                     goodListHtml += '<span class="main_content_a_left">';
                     goodListHtml += '<img class="main_img" src="../../image/mine/money.png">';
@@ -187,25 +187,6 @@ function placard(){
                 localStorage.setItem('gurl', window.location.href);
                 location.href = 'taskdetail.html';
             })
-
-            // 查看出现弹框
-                    $(function(){
-                        $('#l_doum').click(function(){
-                            $('#modal_help').show();
-                            $('#modal_apply').show();
-                        })
-                        $('.modal-header').click(function(){
-                            $('#modal_help').hide();
-                            $('#modal_apply').hide();
-                
-                        })
-                        $('.modal-footer').click(function(){
-                            location.href = '../NewProjects/NewProjects.html';
-                
-                        })
-                       
-
-                     })
          }else if(data.success ==2){
             var lurl = window.location.href;
             var url = localStorage.getItem('url');
@@ -322,7 +303,6 @@ function placard(){
                 var captionName = jsel.match('.category_name', cutRst);//获得标题category_name
                 var stopTime = jsel.match('.task_end_time', cutRst);//结束时间
                 var goodListHtml = '';
-                // console.log(cutRst,'liebiao')
                 for(var i =0;i<cutRst.length;i++){
                     // 列表内容
                    if(cutRst[i].status == 0){//发布中，进行中
