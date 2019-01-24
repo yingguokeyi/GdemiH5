@@ -2,6 +2,22 @@
 window.jsel = JSONSelect;
 var tokenMark = localStorage.getItem('token');//拿到传过来的token
 
+// 点击下拉框图片改变
+function trf (){
+	if($(this).find('img').attr("data-arrow") == 'false'){
+		$(this).find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+		$(this).find('.select_cont').slideUp('fast')
+		$(this).find('img').attr("data-arrow",'true')
+	
+	}else{
+		$(this).find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+		$(this).find('.select_cont').slideDown('fast')
+		$(this).find('img').attr("data-arrow",'false')
+
+	}
+}
+
+
 $(function(){
 	var listHtml = '';
 	var num = 2018;
@@ -9,17 +25,46 @@ $(function(){
 		listHtml += '<li>'+(num+j)+'</li>'
 	}
 	$('#year_sel ul').html(listHtml);
+	// 点击月下拉框出现下拉，箭头发生变化
 	$('#cl_sel').click(function(){
+
+		if($(this).find('img').attr("data-arrow") == 'true'){
+			$(this).find('.title_img').removeClass('title_img').addClass('test-inverse');
+			$(this).find('.select_cont').slideDown('fast')
+			$(this).find('img').attr("data-arrow",'false')
+		
+		}else{
+			$(this).find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+			$(this).find('.select_cont').slideUp('fast')
+			$(this).find('img').attr("data-arrow",'true')
+
+		}
 		$('#year_sel').toggle();
 	})
+
 	$('#year_sel ul li').click(function(){
+		trf();
 		$('.year').html($(this).html());
 		$('#year_sel').hide();
 	})
+// 点击日下拉框出现下拉，箭头发生变化
 	$('#cli_sel').click(function(){
+
+		if($(this).find('img').attr("data-arrow") == 'true'){
+			$(this).find('.title_img').removeClass('title_img').addClass('test-inverse');
+			// $(this).find('.select_cont').slideDown('fast')
+			$(this).find('img').attr("data-arrow",'false')
+		   
+		}else{
+			$(this).find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+			// $(this).find('.select_cont').slideUp('fast')
+			$(this).find('img').attr("data-arrow",'true')
+		}
 		$('#mont_sel').toggle();
 	})
+
 	$('#mont_sel ul li').click(function(){
+		trf();
 		$('.month').html($(this).html());
 		$('#mont_sel').hide();
 	})
