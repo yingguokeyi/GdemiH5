@@ -27,26 +27,34 @@ $(function(){
 	$('#year_sel ul').html(listHtml);
 	// 点击月下拉框出现下拉，箭头发生变化
 	$('#cl_sel').click(function(){
-
 		if($(this).find('img').attr("data-arrow") == 'true'){
 			$(this).find('.title_img').removeClass('title_img').addClass('test-inverse');
 			$(this).find('.select_cont').slideDown('fast')
 			$(this).find('img').attr("data-arrow",'false')
-		
 		}else{
 			$(this).find('.test-inverse').removeClass('test-inverse').addClass('title_img');
 			$(this).find('.select_cont').slideUp('fast')
 			$(this).find('img').attr("data-arrow",'true')
-
 		}
 		$('#year_sel').toggle();
 	})
 
 	$('#year_sel ul li').click(function(){
-		trf();
+		var s='';
+		s=$(this).parent().parent().prev().prev().prev().prev().prev();
+		if(s.find('img').attr("data-arrow") == 'false'){
+				s.find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+				s.find('.select_cont').slideUp('fast')
+				s.find('img').attr("data-arrow",'true')
+		}else{
+				s.find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+				s.find('.select_cont').slideDown('fast')
+				s.find('img').attr("data-arrow",'false')
+			}
 		$('.year').html($(this).html());
 		$('#year_sel').hide();
 	})
+	
 // 点击日下拉框出现下拉，箭头发生变化
 	$('#cli_sel').click(function(){
 
@@ -64,7 +72,17 @@ $(function(){
 	})
 
 	$('#mont_sel ul li').click(function(){
-		trf();
+		var s='';
+		s=$(this).parent().parent().prev().prev().prev().prev();
+		if(s.find('img').attr("data-arrow") == 'false'){
+				s.find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+				s.find('.select_cont').slideUp('fast')
+				s.find('img').attr("data-arrow",'true')
+		}else{
+				s.find('.test-inverse').removeClass('test-inverse').addClass('title_img');
+				s.find('.select_cont').slideDown('fast')
+				s.find('img').attr("data-arrow",'false')
+			}
 		$('.month').html($(this).html());
 		$('#mont_sel').hide();
 	})
