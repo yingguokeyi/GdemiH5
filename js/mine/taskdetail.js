@@ -48,7 +48,7 @@ $(function(){
 
 				var step = hadoop[0].img;//步骤
 				for(var i =0;i<step.length;i++){//有很多个任务步骤
-					getHtml +='<span class="quest_one">任务步骤 1：<i class="a_account">'+step[i][0].description+'</i></span>';
+					getHtml +='<span class="quest_one">任务步骤 ：<i class="a_account">'+step[i][0].description+'</i></span>';
 					getHtml +='<div class="p_photo">';
 					getHtml +='<div class="photo_one">';
 					for( var a=0;a<step[i].length;a++ ){
@@ -151,7 +151,7 @@ $(function(){
 
 				var step = hadoop[0].img;//步骤
 				for(var i =0;i<step.length;i++){//有很多个任务步骤
-					getHtml +='<span class="quest_one">任务步骤 1：<i class="a_account">'+step[i][0].description+'</i></span>';
+					getHtml +='<span class="quest_one">任务步骤 ：<i class="a_account">'+step[i][0].description+'</i></span>';
 					getHtml +='<div class="p_photo">';
 					getHtml +='<div class="photo_one">';
 					for( var a=0;a<step[i].length;a++ ){
@@ -255,7 +255,7 @@ $(function(){
 				var step = hadoop[0].img;//步骤
 				for(var i =0;i<step.length;i++){//有很多个任务步骤
 					var rs = step[i][0].description;
-					getHtml +='<span class="quest_one">任务步骤 1：<i class="a_account">'+step[i][0].description+'</i></span>';
+					getHtml +='<span class="quest_one">任务步骤 ：<i class="a_account">'+step[i][0].description+'</i></span>';
 					getHtml +='<div class="p_photo">';
 					getHtml +='<div class="photo_one">';
 					for( var a=0;a<step[i].length;a++ ){
