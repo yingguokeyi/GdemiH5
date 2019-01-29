@@ -1,7 +1,7 @@
 $(function(){
 	window.jsel = JSONSelect;
 	var token = localStorage.getItem('token');
-	var uri = localStorage.getItem('uri_goods');//拿到传过来的id
+	var uri = localStorage.getItem('uri_goods');//发布任务id
 	var small = localStorage.getItem('smallBanks');//人数
 	var dough = localStorage.getItem('cash');
 	$.ajax({
@@ -9,18 +9,16 @@ $(function(){
         type: "GET",
         dataType: "jsonp", //指定服务器返回的数据类型
         data: {
-            method: 'getUserTaskInfo',
+            method: 'getUserTaskInfoOptimization',
             token: token,
             taskId:uri,
             url_type:"hUser"
         },
         success: function(data) {
-        	var rs = data.result.rs;
+        	var rs = data.result.rs[0].result.result.rs[0];
         	if(rs!=''){
-				var title = rs[2].category_name;//标题
-				var startTime = rs[1].create_start_time;//开始时间
-				var sourceH = rs[8].source;//H5前端用户上传任务返回的数据
-				var sourceP = rs[9].source;//后台上传任务返回的数据
+				var title = rs.category_name;//标题
+				var source = rs.source;//H5前端用户上传任务返回的数据//后台上传任务返回的数据
 				var myDate = new Date();//获取系统当前时间
 				myDate.getYear(); //获取当前年份(2位)
 				myDate.getMonth(); //获取当前月份(0-11,0代表1月)
@@ -52,18 +50,9 @@ $(function(){
 				var Minutes = myDate.getMinutes();
 				var Seconds = myDate.getSeconds();
 				var miao = myDate.getHours()*3600 + myDate.getMinutes()*60 + myDate.getSeconds();
-				if(sourceH==1){
-					var endTime = rs[15].taskTime;//结束时间
-					var creatTime = rs[3].create_time;//任务时间(判断今天，刚刚，日期)
-					var situation = rs[14].state;//状态
-					var task_id = rs[6].task_id;//用户申请任务ID
-				}
-				if(sourceP==0){
-					var endTime = rs[11].taskTime;//结束时间
-					var creatTime = rs[4].create_time;//任务时间(判断今天，刚刚，日期)
-					var situation = rs[10].state;//状态
-					var task_id = rs[7].task_id;//用户申请任务ID
-				}
+				var creatTime = rs.create_time;//任务时间(判断今天，刚刚，日期)
+				var situation = rs.state;//状态
+				var task_id = rs.taskId;//用户申请任务ID
 				sStorage = window.localStorage; //本地存题目
 				sStorage.state = situation;
                 sStorage.taskEnd = taskEndTime;
@@ -82,10 +71,10 @@ $(function(){
 					$('.now').html('今天');
 				}
 				//截止日期
-				if(sourceH==1){
-					var taskEndTime = rs[12].task_end_time;//截止日期
-					var task_number = rs[13].task_number; //总的数量
-					var user_task_num = rs[11].user_task_num; //已完成的数量
+				var taskEndTime = rs.task_end_time;//截止日期
+				var task_number = rs.task_number; //总的数量
+				var user_task_num = rs.user_task_num; //已完成的数量
+				if(source==1){
 					if(taskEndTime != ''){
 						var taskTime = "20" + taskEndTime.substring(0, 2) + "/" + taskEndTime.substring(2, 4) + "/" + taskEndTime.substring(4, 6) + " " + taskEndTime.substring(6, 8) + ":" + taskEndTime.substring(8, 10) + ":" + taskEndTime.substring(10, 12);
 						$('.expiration_date').html('截止日期:'+taskTime);//截止日期
@@ -94,114 +83,30 @@ $(function(){
 					}
 					
 				}
-				if(sourceH==0){
-					var taskEndTime = rs[6].task_end_time;//截止日期
+				if(source==0){
 					var taskTime = "20" + taskEndTime.substring(0, 2) + "/" + taskEndTime.substring(2, 4) + "/" + taskEndTime.substring(4, 6) + " " + taskEndTime.substring(6, 8) + ":" + taskEndTime.substring(8, 10) + ":" + taskEndTime.substring(10, 12);
 					$('.expiration_date').html(taskTime);//截止日期
 				}
 				$('.top_money').html(dough);//奖励钱
     			$('.top_title').html(title);//标题
-    			//任务说明
-    			if(sourceH==1){
-    				var slistHtml = '';
-    				var task_explay = rs[0].img;
-    				var reArr = [];
-    				for(var i=0;i<task_explay.length;i++){
-					
-    					slistHtml += '<li>'+(i+1)+'. '+task_explay[i][0].description+'</li>';
-    					reArr.push(task_explay[i][0].description);
-    				}
-    				$('.task_specification p').after(slistHtml);
-    				sStorage = window.localStorage; //本地存题目
-					sStorage.reArr = reArr;
+    			if(source==0){
+    				var remark = rs.remark;
+    				$('.task_specification p').after(remark);//任务说明
     			}
-    			if(sourceP==0){
-    				var remark = rs[8].remark;
-    				$('.task_specification p').after(remark);
-    			}
-    			// 示例图片
-    			if(sourceH==1){
-    				var img = rs[0].img;
-		        	if(img!=''){
-		        		var imgList='';
-		        		var arr1 = [];
-		        		for(var i=0;i<img.length;i++){
-		        			for(var j=0;j<img[i].length;j++){
-							
-		        				imgList += '<img src='+img[i][j].image+' />';
-		        				arr1.push(img[i][j].image);
-		        			}
-		        			
-		        		}
-		        		$('.sample_picture #picOne').html(imgList);
-		        		sStorage = window.localStorage; //本地存题目
-						sStorage.sArr1 = arr1;
-						seaImg();
-		        	}
-    			}
-	        	if(sourceP==0){
-	        		var img = rs[0].img;
-	        		if(img!=''){
-		        		var imgList='';
-		        		var arr1 = [];
-		        		for(var i=0;i<img.length;i++){
-		        			imgList += '<img src='+img[i].image+' />';
-		        			arr1.push(img[i].image);
-		        		}
-		        		$('.sample_picture #picOne').html(imgList);
-		        		sStorage = window.localStorage; //本地存题目
-						sStorage.sArr1 = arr1;
-						seaImg();
-		        	}
-	        	}
-	        	//任务提交示例图 提交信息
-	        	if(sourceH==1){
-	        		$('#task_sub_pic').show();
-	        		$('#task_sub_me').show();
-	        		var contrastImg = rs[9].contrastImg; //提交示例图
-	        		if(contrastImg!=''){
-	        			var conImgList = '';
-	        			var arr2 = [];
-		        		for(var i=0;i<contrastImg.length;i++){
-		        			conImgList += '<img src='+contrastImg[i].image+' />';
-		        			arr2.push(contrastImg[i].image);
-		        		}
-		        		$('.sample_picture #picSub').html(conImgList);
-		        		sStorage = window.localStorage; //本地存题目
-						sStorage.sArr2 = arr2;
-						seaImg();
-	        		}
-	        		var tips_words = rs[4].tips_words;//提交信息
+    			if(source==1){
+    				$('#task_sub_me').show();
+    				var tips_words = rs.tips_words;//提交信息
 	        		$('#sub_message').html(tips_words);
-	        	}	
-			    // 开始时间的总秒数
-			    var startTimetm = "20" + startTime.substring(0, 2) + "/" + startTime.substring(2, 4) + "/" + startTime.substring(4, 6) + " " + startTime.substring(6, 8) + ":" + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
-			    var startDate = new Date(startTimetm).getTime();
-			    // 结束时间的总秒数
-			    sekillEndTime = "20" + endTime.substring(0, 2) + "/" + endTime.substring(2, 4) + "/" + endTime.substring(4, 6) + " " + endTime.substring(6, 8) + ":" + endTime.substring(8, 10) + ":" + endTime.substring(10, 12);
-			    var endTDate = new Date(sekillEndTime).getTime();
-			    //获取当前时间
-			    var currentDate = new Date();
-			    currentDate = currentDate.getTime();
-			    //时间段要注意两种情况一种是刚进来就已经开始倒计时，还有就是到页面还没有倒计时，就用结束的时间减去当前的时间
-			    var totalSecond;
-			    if(situation == 1 || situation == 4){
-				    if (startDate < currentDate  && currentDate <= endTDate) {//已经在倒计时了
-				        totalSecond = parseInt((endTDate - currentDate) / 1000);
-				        setTimeout(function () {//已经在倒计时了
-				        	countdown(totalSecond)
-				        },1000)
-				    }
-				}
+    			}
 				if(situation == 0){
 					$('.txt_p').html('已有'+small+'人完成');
 					$('#task_apply').html('立即申请任务');
-					if(sourceP==0){
+					if(source==0){
 						$('#task_apply').click(function(){
 							$('#modal_apply').show();
 						})
 					}
-					if(sourceH==1){
+					if(source==1){
 						if(taskEndTime!=''){
 							$('#task_apply').click(function(){
 								$('#modal_apply').show();
@@ -251,7 +156,7 @@ $(function(){
 					$('#task_apply').attr('disabled',true);
 					$('#task_apply').css({'backgoround':'#b4b4b4','color':'#fff'});
 				}
-				if(sourceP==0){
+				if(source==0){
 					if(situation == 1 || situation == 4){
 						$('#task_apply').click(function(){
 							if(nowdate>taskEndTime){
@@ -262,7 +167,7 @@ $(function(){
 						})	
 					}
 				}
-				if(sourceH==1){
+				if(source==1){
 					if(taskEndTime != ''){
 						if(situation == 1 || situation == 4){
 							$('#task_apply').click(function(){
@@ -290,48 +195,8 @@ $(function(){
 					$('#modal_help').hide();
 					$('#modal_apply').hide();
 				})
-			//  倒计时方法---已经开始
-				function countdown (totalSecond){
-				    var that=this;
-				    clearInterval(that.interval);
-				    that.interval = setInterval(function () {
-					    // 总秒数
-					    var second = totalSecond;
-					    // 天数位
-					    var day = Math.floor(second / 3600 / 24);
-					    var dayStr = day.toString();
-					    if (dayStr.length == 1) dayStr = '0' + dayStr;
-					    // 小时位
-					    var hr = Math.floor((second - day * 3600 * 24) / 3600);
-					    var hrStr = hr.toString();
-					    if (hrStr.length == 1) hrStr = '0' + hrStr;
-					    // 分钟位
-					    var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-					    var minStr = min.toString();
-					    if (minStr.length == 1) minStr = '0' + minStr;
-					    // 秒位
-					    var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-					    var secStr = sec.toString();
-				        if (secStr.length == 1) secStr = '0' + secStr;
-				        //将倒计时赋值到div中
-				        document.getElementById("drew").innerHTML = hrStr+':'+minStr+':'+secStr; 
-				        totalSecond--; 
-					    if (totalSecond == 0) {
-				            setTimeout(function tt(totalSecond){
-				                document.getElementById("drew").innerHTML = '00'+':'+'00'+':'+'00';
-				                clearInterval(that.interval);
-				                $('.txt_p').html('');
-								$('#task_apply').html('立即申请任务');
-								$('#task_apply').click(function(){
-									$('#modal_apply').show();
-								})
-				            },1000)
-					    }else{
-					  
-					    }
-				    }.bind(that) ,1000);
-
-				}
+			
+				
         	}
         	//判断有没有绑定手机号
         	$('#task_apply').click(function(){
@@ -342,6 +207,166 @@ $(function(){
         		}
         	})
         	
+        }
+    })
+	$.ajax({
+        url: domain_name_url + "/hUser",
+        type: "GET",
+        dataType: "jsonp", //指定服务器返回的数据类型
+        data: {
+            method: 'getUserTaskImg',
+            token: token,
+            taskId:uri,
+            url_type:"hUser"
+        },
+        success: function(data) {
+        	if(data.success==1){
+        		var res = data.result.rs;
+        		if(res!=''){
+        			var sourceH = res[3].source;//H5前端用户上传任务返回的数据
+        			var sourceP = res[2].source;//后台上传任务返回的数据
+        			if(sourceH==1){
+        				var startTime = res[2].create_start_time;//开始时间
+        				var endTime = res[4].taskTime;//结束时间
+        				var situation = res[5].status;//状态
+        			}
+        			if(sourceP==0){
+        				var startTime = res[1].create_start_time;//开始时间
+        				var endTime = res[3].taskTime;//结束时间
+        				var situation = res[4].status;//状态
+        			}
+        			// console.log(situation)
+        			//开始时间的总秒数
+				    var startTimetm = "20" + startTime.substring(0, 2) + "/" + startTime.substring(2, 4) + "/" + startTime.substring(4, 6) + " " + startTime.substring(6, 8) + ":" + startTime.substring(8, 10) + ":" + startTime.substring(10, 12);
+				    var startDate = new Date(startTimetm).getTime();
+				    // 结束时间的总秒数
+				    sekillEndTime = "20" + endTime.substring(0, 2) + "/" + endTime.substring(2, 4) + "/" + endTime.substring(4, 6) + " " + endTime.substring(6, 8) + ":" + endTime.substring(8, 10) + ":" + endTime.substring(10, 12);
+				    var endTDate = new Date(sekillEndTime).getTime();
+				    //获取当前时间
+				    var currentDate = new Date();
+				    currentDate = currentDate.getTime();
+				    //时间段要注意两种情况一种是刚进来就已经开始倒计时，还有就是到页面还没有倒计时，就用结束的时间减去当前的时间
+				    var totalSecond;
+				    if(situation == 1 || situation == 4){
+					    if (startDate < currentDate  && currentDate <= endTDate) {//已经在倒计时了
+					        totalSecond = parseInt((endTDate - currentDate) / 1000);
+					        setTimeout(function () {//已经在倒计时了
+					        	countdown(totalSecond)
+					        },1000)
+					    }
+					}
+					//  倒计时方法---已经开始
+					function countdown (totalSecond){
+					    var that=this;
+					    clearInterval(that.interval);
+					    that.interval = setInterval(function () {
+						    // 总秒数
+						    var second = totalSecond;
+						    // 天数位
+						    var day = Math.floor(second / 3600 / 24);
+						    var dayStr = day.toString();
+						    if (dayStr.length == 1) dayStr = '0' + dayStr;
+						    // 小时位
+						    var hr = Math.floor((second - day * 3600 * 24) / 3600);
+						    var hrStr = hr.toString();
+						    if (hrStr.length == 1) hrStr = '0' + hrStr;
+						    // 分钟位
+						    var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
+						    var minStr = min.toString();
+						    if (minStr.length == 1) minStr = '0' + minStr;
+						    // 秒位
+						    var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
+						    var secStr = sec.toString();
+					        if (secStr.length == 1) secStr = '0' + secStr;
+					        //将倒计时赋值到div中
+					        document.getElementById("drew").innerHTML = hrStr+':'+minStr+':'+secStr; 
+					        totalSecond--; 
+						    if (totalSecond == 0) {
+					            setTimeout(function tt(totalSecond){
+					                document.getElementById("drew").innerHTML = '00'+':'+'00'+':'+'00';
+					                clearInterval(that.interval);
+					                $('.txt_p').html('');
+									$('#task_apply').html('立即申请任务');
+									$('#task_apply').click(function(){
+										$('#modal_apply').show();
+									})
+					            },1000)
+						    }else{
+						  
+						    }
+					    }.bind(that) ,1000);
+
+					}
+					//任务说明
+	    			if(sourceH==1){
+	    				var slistHtml = '';
+	    				var task_explay = res[1].img;
+	    				var reArr = [];
+	    				for(var i=0;i<task_explay.length;i++){
+						
+	    					slistHtml += '<li>'+(i+1)+'. '+task_explay[i][0].description+'</li>';
+	    					reArr.push(task_explay[i][0].description);
+	    				}
+	    				$('.task_specification p').after(slistHtml);
+	    				sStorage = window.localStorage; //本地存题目
+						sStorage.reArr = reArr;
+	    			}
+	    			
+	    			//示例图片
+	    			if(sourceH==1){
+	    				var img = res[1].img;
+			        	if(img!=''){
+			        		var imgList='';
+			        		var arr1 = [];
+			        		for(var i=0;i<img.length;i++){
+			        			for(var j=0;j<img[i].length;j++){
+								
+			        				imgList += '<img src='+img[i][j].image+' />';
+			        				arr1.push(img[i][j].image);
+			        			}
+			        			
+			        		}
+			        		$('.sample_picture #picOne').html(imgList);
+			        		sStorage = window.localStorage; //本地存题目
+							sStorage.sArr1 = arr1;
+							seaImg();
+			        	}
+	    			}
+		        	if(sourceP==0){
+		        		var img = res[0].img;
+		        		if(img!=''){
+			        		var imgList='';
+			        		var arr1 = [];
+			        		for(var i=0;i<img.length;i++){
+			        			imgList += '<img src='+img[i].image+' />';
+			        			arr1.push(img[i].image);
+			        		}
+			        		$('.sample_picture #picOne').html(imgList);
+			        		sStorage = window.localStorage; //本地存题目
+							sStorage.sArr1 = arr1;
+							seaImg();
+			        	}
+		        	}
+		        	//任务提交示例图 提交信息
+		        	if(sourceH==1){
+		        		$('#task_sub_pic').show();
+		        		var contrastImg = res[0].contrastImg; //提交示例图
+		        		if(contrastImg!=''){
+		        			var conImgList = '';
+		        			var arr2 = [];
+			        		for(var i=0;i<contrastImg.length;i++){
+			        			conImgList += '<img src='+contrastImg[i].image+' />';
+			        			arr2.push(contrastImg[i].image);
+			        		}
+			        		$('.sample_picture #picSub').html(conImgList);
+			        		sStorage = window.localStorage; //本地存题目
+							sStorage.sArr2 = arr2;
+							seaImg();
+		        		}
+		        		
+		        	}
+        		}
+        	}
         }
     })
 // 赏金猎人

@@ -1,13 +1,4 @@
-window.jsel = JSONSelect;
 var token = localStorage.getItem('token');
-var theTitleName =localStorage.getItem('slogan');//标题名字
-var category = localStorage.getItem('equation');//类型
-var chaining = localStorage.getItem('endingTime');//链接
-var struct = localStorage.getItem('typedef');//类型说明
-var ico = localStorage.getItem('genre');//类型图片
-var rImg = localStorage.getItem('checkk');//审核图片
-console.log(theTitleName,category,struct,chaining,ico,rImg,'标题名字')
-
 if(token == null) {
     layer.open({
         content: '请先登录',
@@ -21,14 +12,26 @@ if(token == null) {
 }else{
 	//任务类型
 	$('#cl_sel').click(function(){
+		var test = document.getElementById('test');
+        if(test.src.indexOf('down') >= 0){
+            test.src="../../image/NewProjects/up.png";
+        }else{
+            test.src="../../image/NewProjects/down.png";
+        }
+        $(this).toggleClass("blue");
 		$('.select_cont').toggle();
 	})
+
 	$('.select_cont ul li').click(function(){
+		$(this).css("background",'#fafafa');
+		$(this).siblings().css("background",'transparent');
 		$('.mold').html($(this).html());
+		var test = document.getElementById('test');
+		test.src="../../image/NewProjects/down.png";
+		$('#cl_sel').removeClass('blue');
 		$('.select_cont').hide();
 		var name = $(this).data('name');
 		localStorage.setItem('name',$(this).data('name'));
-		// console.log(name);
 	})
 	//任务名称
 	$('#task_name input').blur(function(){
@@ -68,7 +71,7 @@ if(token == null) {
 			listHtml += '<label class="upload_pictures">';
 			listHtml += '<input class="fileInput" type="file"  accept="image/*" name="file" style="display:none;" onchange="javascript:setImagePreview(this);">';
 			listHtml += '<img src="../../image/mine/unpload_smoal.png" class="add" />';
-			listHtml += '<p class="upolad_txt">最多三张</p>';
+			// listHtml += '<p class="upolad_txt">最多三张</p>';
 			listHtml += '<img class="preview" src="" width="100%" height="100%" style="display: none;"/>';
 			listHtml += '</label>';
 			listHtml += '</li>';
