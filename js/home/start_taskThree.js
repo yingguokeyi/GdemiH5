@@ -11,17 +11,26 @@ function setImagePreview1(avalue) {
     var add1 = document.getElementById("add1");
         if (docObj1.files && docObj1.files[0]) {
             //火狐下，直接设img属性
-            imgObjPreview1.style.display = 'block';
-            imgObjPreview1.style.width = '100%';
-            imgObjPreview1.style.height = '100%';
-            //imgObjPreview.src = docObj.files[0].getAsDataURL();
-            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
-            imgObjPreview1.src = window.URL.createObjectURL(docObj1.files[0]);
-            add1.style.display="none";
-            $('.upolad_txt').hide();
-            $("#sub_task").removeAttr("disabled");
-			$('#sub_task').css({'background':'#333','color':'#fff'});
-            receiptImg1();
+            var fileObject = docObj1.files[0];
+            if(fileObject.size/1024 > 3072){
+                layer.open({
+                    content: '上传图片要小于3M,请重新上传',
+                    skin: 'msg',
+                    time: 2
+                });
+            }else{
+                imgObjPreview1.style.display = 'block';
+                imgObjPreview1.style.width = '100%';
+                imgObjPreview1.style.height = '100%';
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                imgObjPreview1.src = window.URL.createObjectURL(docObj1.files[0]);
+                add1.style.display="none";
+                $('.upolad_txt').hide();
+                $("#sub_task").removeAttr("disabled");
+    			$('#sub_task').css({'background':'#333','color':'#fff'});
+                receiptImg1();
+            }    
         } else {
             //IE下，使用滤镜
             docObj1.select();
@@ -52,15 +61,15 @@ function receiptImg1() {
     var formData = new FormData();
     var img_file = document.getElementById("doc1");
     var fileObject = img_file.files[0];
-    if(fileObject.size/1024 > 1025){//大于1M，进行压缩上传
-        photoCompress(fileObject, {
-            quality: 0.2
-        }, function(base64Codes){
-            //console.log("压缩后：" + base.length / 1024 + " " + base);
-            var bl = convertBase64UrlToBlob(base64Codes);
-            formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
-            formData.append("url_type","uploadImg");
-        });
+    if(fileObject.size/1024 > 3072){//大于1M，进行压缩上传
+        // photoCompress(fileObject, {
+        //     quality: 0.2
+        // }, function(base64Codes){
+        //     //console.log("压缩后：" + base.length / 1024 + " " + base);
+        //     var bl = convertBase64UrlToBlob(base64Codes);
+        //     formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+        //     formData.append("url_type","uploadImg");
+        // });
     }else {
         formData.append("file", fileObject);
         formData.append("url_type","uploadImg");
@@ -95,17 +104,26 @@ function setImagePreview2(avalue) {
     var add2 = document.getElementById("add2");
         if (docObj2.files && docObj2.files[0]) {
             //火狐下，直接设img属性
-            imgObjPreview2.style.display = 'block';
-            imgObjPreview2.style.width = '100%';
-            imgObjPreview2.style.height = '100%';
-            //imgObjPreview.src = docObj.files[0].getAsDataURL();
-            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
-            imgObjPreview2.src = window.URL.createObjectURL(docObj2.files[0]);
-            add2.style.display="none";
-            $('.upolad_txt').hide();
-            $("#sub_task").removeAttr("disabled");
-			$('#sub_task').css({'background':'#333','color':'#fff'});
-            receiptImg2();
+            var fileObject = docObj2.files[0];
+            if(fileObject.size/1024 > 3072){
+                layer.open({
+                    content: '上传图片要小于3M,请重新上传',
+                    skin: 'msg',
+                    time: 2
+                });
+            }else{
+                imgObjPreview2.style.display = 'block';
+                imgObjPreview2.style.width = '100%';
+                imgObjPreview2.style.height = '100%';
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                imgObjPreview2.src = window.URL.createObjectURL(docObj2.files[0]);
+                add2.style.display="none";
+                $('.upolad_txt').hide();
+                $("#sub_task").removeAttr("disabled");
+    			$('#sub_task').css({'background':'#333','color':'#fff'});
+                receiptImg2();
+            }    
         } else {
             //IE下，使用滤镜
             docObj2.select();
@@ -136,15 +154,15 @@ function receiptImg2() {
     var formData = new FormData();
     var img_file = document.getElementById("doc2");
     var fileObject = img_file.files[0];
-    if(fileObject.size/1024 > 1025){//大于1M，进行压缩上传
-        photoCompress(fileObject, {
-            quality: 0.2
-        }, function(base64Codes){
-            //console.log("压缩后：" + base.length / 1024 + " " + base);
-            var bl = convertBase64UrlToBlob(base64Codes);
-            formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
-            formData.append("url_type","uploadImg");
-        });
+    if(fileObject.size/1024 > 3072){//大于1M，进行压缩上传
+        // photoCompress(fileObject, {
+        //     quality: 0.2
+        // }, function(base64Codes){
+        //     //console.log("压缩后：" + base.length / 1024 + " " + base);
+        //     var bl = convertBase64UrlToBlob(base64Codes);
+        //     formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+        //     formData.append("url_type","uploadImg");
+        // });
     }else {
         formData.append("file", fileObject);
         formData.append("url_type","uploadImg");
@@ -179,17 +197,26 @@ function setImagePreview3(avalue) {
     var add3 = document.getElementById("add3");
         if (docObj3.files && docObj3.files[0]) {
             //火狐下，直接设img属性
-            imgObjPreview3.style.display = 'block';
-            imgObjPreview3.style.width = '100%';
-            imgObjPreview3.style.height = '100%';
-            //imgObjPreview.src = docObj.files[0].getAsDataURL();
-            //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
-            imgObjPreview3.src = window.URL.createObjectURL(docObj3.files[0]);
-            add3.style.display="none";
-            $('.upolad_txt').hide();
-            $("#sub_task").removeAttr("disabled");
-			$('#sub_task').css({'background':'#333','color':'#fff'});
-            receiptImg3();
+            var fileObject = docObj3.files[0];
+            if(fileObject.size/1024 > 3072){
+                layer.open({
+                    content: '上传图片要小于3M,请重新上传',
+                    skin: 'msg',
+                    time: 2
+                });
+            }else{
+                imgObjPreview3.style.display = 'block';
+                imgObjPreview3.style.width = '100%';
+                imgObjPreview3.style.height = '100%';
+                //imgObjPreview.src = docObj.files[0].getAsDataURL();
+                //火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                imgObjPreview3.src = window.URL.createObjectURL(docObj3.files[0]);
+                add3.style.display="none";
+                $('.upolad_txt').hide();
+                $("#sub_task").removeAttr("disabled");
+    			$('#sub_task').css({'background':'#333','color':'#fff'});
+                receiptImg3();
+            }    
         } else {
             //IE下，使用滤镜
             docObj3.select();
@@ -220,15 +247,15 @@ function receiptImg3() {
     var formData = new FormData();
     var img_file = document.getElementById("doc3");
     var fileObject = img_file.files[0];
-    if(fileObject.size/1024 > 1025){//大于1M，进行压缩上传
-        photoCompress(fileObject, {
-            quality: 0.2
-        }, function(base64Codes){
-            //console.log("压缩后：" + base.length / 1024 + " " + base);
-            var bl = convertBase64UrlToBlob(base64Codes);
-            formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
-            formData.append("url_type","uploadImg");
-        });
+    if(fileObject.size/1024 > 3072){//大于1M，进行压缩上传
+        // photoCompress(fileObject, {
+        //     quality: 0.2
+        // }, function(base64Codes){
+        //     //console.log("压缩后：" + base.length / 1024 + " " + base);
+        //     var bl = convertBase64UrlToBlob(base64Codes);
+        //     formData.append("file", bl, "file_"+Date.parse(new Date())+".jpg"); // 文件对象
+        //     formData.append("url_type","uploadImg");
+        // });
     }else {
         formData.append("file", fileObject);
         formData.append("url_type","uploadImg");
@@ -361,3 +388,53 @@ function countdown (totalSecond){
     }.bind(that) ,1000);
 
 }
+function photoCompress(file,w,objDiv){
+        var ready=new FileReader();
+        /*开始读取指定的Blob对象或File对象中的内容. 当读取操作完成时,readyState属性的值会成为DONE,如果设置了onloadend事件处理程序,则调用之.同时,result属性中将包含一个data: URL格式的字符串以表示所读取文件的内容.*/
+        ready.readAsDataURL(file);
+            ready.onload=function(){
+                var re=this.result;
+                canvasDataURL(re,w,objDiv)
+        }
+    }
+    function canvasDataURL(path, obj, callback){
+        var img = new Image();
+        img.src = path;
+        img.onload = function(){
+            var that = this;
+            // 默认按比例压缩
+            var w = that.width,
+                h = that.height,
+                scale = w / h;
+            w = obj.width || w;
+            h = obj.height || (w / scale);
+            var quality = 0.7;  // 默认图片质量为0.7
+            //生成canvas
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            // 创建属性节点
+            var anw = document.createAttribute("width");
+            anw.nodeValue = w;
+            var anh = document.createAttribute("height");
+            anh.nodeValue = h;
+            canvas.setAttributeNode(anw);
+            canvas.setAttributeNode(anh);
+            ctx.drawImage(that, 0, 0, w, h);
+            // 图像质量
+            if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+                quality = obj.quality;
+            }
+            // quality值越小，所绘制出的图像越模糊
+            var base64 = canvas.toDataURL('image/jpeg', quality);
+            // 回调函数返回base64的值
+            callback(base64);
+        }
+    }
+    function convertBase64UrlToBlob(urlData){
+        var arr = urlData.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while(n--){
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], {type:mime});
+    }

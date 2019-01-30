@@ -6,7 +6,7 @@ $(function(){
 	var taskMess = localStorage.getItem('taskMess');//提交文字
 	var taskConts = localStorage.getItem('taskConts');//任务步骤
 	// console.log(taskConts)
-	var arr = localStorage.getItem('arr');//审核示例图
+	var arr = localStorage.getItem('arrs');//审核示例图
 	// console.log(arr)
 	$('#unit_price').blur(function(){
 		var proceVal = $('#unit_price').val();
