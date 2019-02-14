@@ -60,14 +60,12 @@ if(tokenMark == null) {
             type: "GET",
             dataType: "jsonp", //指定服务器返回的数据类型
             data: {
-                method: 'getUserInfo',
+                method: 'getUserInfoOptimization',
                 token:tokenMark,
                 url_type:"hUser"
             },
             success: function(data) {
-                var headRsd = data.result.rs[0].result.hMember.result.rs[0];//我的名字，我的ID号
-                var asset =  data.result.rs[0].result.userWallet.result.rs[0];//当前资产
-                var team = data.result.rs[0].result.lowerCount;//我的团队人数            
+                var headRsd = data.result.rs[0].result.result.rs[0];//我的名字，我的ID号      
                 // 头部头像，id
                 if( data.success ==1){
                         var headerHtml ='';
@@ -99,12 +97,12 @@ if(tokenMark == null) {
                     // 团队，资产
                     var capitalHtml='';
                     capitalHtml +='<li>';
-                    capitalHtml +='<p>'+(asset.balance/100).toFixed(2)+'元</p>';
+                    capitalHtml +='<p>'+(headRsd.balance/100).toFixed(2)+'元</p>';
                     capitalHtml +='<p>当前资产</p>';
                     capitalHtml +='<div class="mid_line"></div>';
                     capitalHtml +='</li>';
                     capitalHtml +='<li>';
-                    capitalHtml +='<p>'+team+'人</p>';
+                    capitalHtml +='<p>'+headRsd.num+'人</p>';
                     capitalHtml +='<p>我的团队</p>';
                     capitalHtml +='</li>';
                     $('.main_middle ul').html(capitalHtml);
