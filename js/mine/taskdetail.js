@@ -321,7 +321,7 @@ $(function(){
 				getHtml +='</div>';
 
 				getHtml +='<footer>';
-				getHtml +='<div class="tails"  data-id='+hadoop[13].id+' data-type='+hadoop[6].type+' data-category_name='+hadoop[1].category_name+' data-image='+nt+' data-description='+rs+' data-audit='+gi+' data-link_adress='+hadoop[9].link_adress+'>修改任务</div>';
+				getHtml +='<div class="tails"  data-id='+hadoop[13].id+' data-type='+hadoop[6].type+' data-category_name='+hadoop[1].category_name+' data-image='+nt+' data-description='+rs+' data-audit='+gi+' data-time= '+(hadoop[4].bonus/100).toFixed(2)+' data-num='+hadoop[12].task_number+' data-ttime='+hadoop[7].task_time+' data-tcycle='+hadoop[16].check_time+' data-link_adress='+hadoop[9].link_adress+'>修改任务</div>';
 				getHtml +='</footer>';
 			}else if(hadoop[15].status ==3){//已结束
 

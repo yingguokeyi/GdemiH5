@@ -32,18 +32,8 @@ if(token == null) {
             if(data.success==1){
                 var taskNumber = data.result.rs[0].result.result.rs[0];
                 // 任务，金额
-                var sessionsHtml ='';
-                sessionsHtml += '<li>';
-                sessionsHtml += '<p>'+taskNumber.num+'个</p>';
-                sessionsHtml += '<p>今日任务</p>';
-                sessionsHtml += '<div class="mid_line"></div>';
-                sessionsHtml += '</li>';
-
-                sessionsHtml += '<li>';
-                sessionsHtml += '<p>'+(taskNumber.money/100).toFixed(2)+'元</p>';
-                sessionsHtml += '<p>奖励总金额</p>';
-                sessionsHtml += '</li>';
-                $('.main_middle ul').html(sessionsHtml);
+                $('.day_task').html(taskNumber.num);
+                $('.award_money').html((taskNumber.money/100).toFixed(2));
             }
         }
     })    
@@ -355,9 +345,9 @@ if(token == null) {
     }
 
     function placard(){
-        var menuListHtml = '';
-        menuListHtml += '<li>全部任务</li>';
-        $('.scroller ul').html(menuListHtml);
+        // var menuListHtml = '';
+        // menuListHtml += '<li>全部任务</li>';
+        // $('.scroller ul').html(menuListHtml);
         $('.scroller ul').find('li:first-child').addClass('cur');
         ask();
         $.fn.navbarscroll = function (options) {

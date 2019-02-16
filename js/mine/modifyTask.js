@@ -328,7 +328,7 @@ $('.next_step button').click(function(){
 	    });
 	    return false;
 	}else{
-		location.href='task_designing.html';
+		location.href='modifyDesign.html';
 	}
 	
 })

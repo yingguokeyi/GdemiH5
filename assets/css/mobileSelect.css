@@ -1,12 +1,13 @@
 
-.mobileSelect{
+.mobileSelect {
   position: relative;
   z-index: 0;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
+  -webkit-transition: all .4s;
+  transition: all .4s
 }
+
 .mobileSelect .grayLayer {
   position: fixed;
   top: 0;
@@ -14,22 +15,21 @@
   bottom: 0;
   right: 0;
   background: #eee;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, .7);
   z-index: 888;
-  display: block;
+  display: block
 }
 .mobileSelect .content {
   width: 100%;
-  height: 38%;
   display: block;
   position: fixed;
   z-index: 889;
-  color: black;
-  -webkit-transition: all 0.4s;
-  transition: all 0.4s;
-  bottom: -3.5rem;
-  left:0;
-  background: white;
+  color: #000;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+  bottom: -350px;
+  left: 0;
+  background: #fff
 }
 .mobileSelect .content .fixWidth {
   width: 100%;
@@ -99,65 +99,71 @@
 }
 .mobileSelect .content .panel .wheels {
   width: 100%;
-  height: 5rem;
-  overflow: hidden;
+  height: 200px;
+  overflow: hidden
 }
+
 .mobileSelect .content .panel .wheel {
   position: relative;
-  z-index: 5;
+  z-index: 0;
   float: left;
   width: 50%;
-  height: 5rem;
+  height: 200px;
   overflow: hidden;
-  -webkit-transition: width 0.3s ease;
-  transition: width 0.3s ease;
+  -webkit-transition: width .3s ease;
+  transition: width .3s ease
 }
+
 .mobileSelect .content .panel .wheel .selectContainer {
   display: block;
   text-align: center;
-  -webkit-transition: -webkit-transform 0.18s ease-out;
-  transition: -webkit-transform 0.18s ease-out;
-  transition: transform 0.18s ease-out;
-  transition: transform 0.18s ease-out, -webkit-transform 0.18s ease-out;
+  -webkit-transition: -webkit-transform .18s ease-out;
+  transition: -webkit-transform .18s ease-out;
+  transition: transform .18s ease-out;
+  transition: transform .18s ease-out, -webkit-transform .18s ease-out
 }
+
 .mobileSelect .content .panel .wheel .selectContainer li {
-  font-size: 0.3rem;
+  font-size: .3rem;
   display: block;
-  height: 0.8rem;
-  line-height: 0.8rem;
+  height: 40px;
+  line-height: 40px;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis
 }
+
 .mobileSelect .content .panel .selectLine {
-  height: 0.8rem;
+  height: 40px;
   width: 100%;
   position: absolute;
-  top: 1.6rem;
+  top: 80px;
   pointer-events: none;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  background-color: #ebebeb;
-  
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc
 }
+
 .mobileSelect .content .panel .shadowMask {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 4rem;
+  height: 200px;
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(rgba(255, 255, 255, 0)), to(#ffffff));
   background: -webkit-linear-gradient(top, #ffffff, rgba(255, 255, 255, 0), #ffffff);
   background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0), #ffffff);
-  opacity: 1;
-  pointer-events: none;
-  z-index: 10;
+  opacity: .9;
+  pointer-events: none
 }
+
 .mobileSelect-show {
   opacity: 1;
   z-index: 10000;
-  visibility: visible;
+  visibility: visible
 }
+
 .mobileSelect-show .content {
-  bottom: 0;
+  bottom: 0
 }
